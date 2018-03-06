@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2018-03-06T19:42:36Z" product-name="tp3_facebook">
+		<header/>
+		<body>
+			<trans-unit id="tx_tp3_facebook_domain_model_fbplugins">
+				<source>tp3 Facebook Plugins</source>
+			</trans-unit>
+			<trans-unit id="tx_tp3_facebook_domain_model_fbplugins.description">
+				<source></source>
+			</trans-unit>
+			<trans-unit id="tx_tp3facebook_domain_model_fbplugin">
+				<source>F B Plugin</source>
+			</trans-unit>
+			<trans-unit id="tx_tp3facebook_domain_model_fbplugin.facebookname">
+				<source>Facebookname</source>
+			</trans-unit>
+			<trans-unit id="tx_tp3facebook_domain_model_fbplugin.fbappid">
+				<source>Fbappid</source>
+			</trans-unit>
+			<trans-unit id="tx_tp3facebook_domain_model_fbplugin.options">
+				<source>Options</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
