@@ -20,7 +20,9 @@ use TYPO3\CMS\Core\Page\PageRenderer;
   */
 class FBPlugins extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
 {
-
+    public static  $prefixId      = 'tx_tp3facebook_fbplugins';		// Same as class name
+    public static $extKey        = 'tp3_facebook';	// The extension key.
+    public static $pi_checkCHash = true;
 
     /**
      *

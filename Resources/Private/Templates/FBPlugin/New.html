@@ -13,14 +13,14 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-<h1>New FBPlugin</h1>
+<h1>New fBPlugin</h1>
 
 <f:flashMessages />
 
-<f:render partial="FormErrors" arguments="{object:FBPlugin}" />
+<f:render partial="FormErrors" arguments="{object:fBPlugin}" />
 
-<f:form action="create" {f:if(condition:extension.needsUploadFolder,then:' enctype="multipart/form-data" ')} name="newFBPlugin" object="{newFBPlugin}">
-<f:render partial="FBPlugin/FormFields" />
+<f:form action="create" {f:if(condition:extension.needsUploadFolder,then:' enctype="multipart/form-data" ')} name="newfBPlugin" object="{newfBPlugin}">
+<f:render partial="fBPlugin/FormFields" />
 	<f:form.submit value="Create new" />
 <![CDATA[</f:form>]]>
 <![CDATA[</f:section>]]>

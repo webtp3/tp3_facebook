@@ -13,16 +13,14 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-<h1>Edit FBPlugin</h1>
+<h1>Edit fBPlugin</h1>
 
 <f:flashMessages />
 
-<f:render partial="FormErrors" arguments="{object:FBPlugin}" />
+<f:render partial="FormErrors" arguments="{object:fBPlugin}" />
 
-<k:format.removeMultipleNewlines>
-<f:form action="update" name="{FBPlugin.name -> k:format.lowercaseFirst()}" object="{FBPlugin.name -> k:format.lowercaseFirst() -> k:curlyBrackets()}" >
-<f:render partial="FBPlugin/FormFields" arguments="{{FBPlugin.name-> k:format.lowercaseFirst()}:{FBPlugin.name-> k:format.lowercaseFirst()}}" />
-</k:format.removeMultipleNewlines>
+<f:form action="update" name="{fBPlugin}" object="{fBPlugin}" >
+<f:render partial="fBPlugin/FormFields" arguments="{fBPlugin}" />
 	<f:form.submit value="Save" />
 <![CDATA[</f:form>]]>
 <![CDATA[</f:section>]]>
