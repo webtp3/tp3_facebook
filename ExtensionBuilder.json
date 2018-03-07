@@ -86,7 +86,7 @@
             "sourceLanguage": "en",
             "state": "alpha",
             "targetVersion": "7.6.0-7.6.99",
-            "version": "0.0.2"
+            "version": "0.0.1"
         },
         "extensionKey": "tp3_facebook",
         "name": "tp3 Facebook",
