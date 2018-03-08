@@ -2,11 +2,10 @@
 return [
     'ctrl' => [
         'title'	=> 'LLL:EXT:tp3_facebook/Resources/Private/Language/locallang_db.xlf:tx_tp3facebook_domain_model_fbplugin',
-        'label' => 'facebookname',
+        'label' => 'uid',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
-		'versioningWS' => true,
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
@@ -16,14 +15,14 @@ return [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-		'searchFields' => 'facebookname,fbappid,options',
+		'searchFields' => '',
         'iconfile' => 'EXT:tp3_facebook/Resources/Public/Icons/tx_tp3facebook_domain_model_fbplugin.gif'
     ],
     'interface' => [
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, facebookname, fbappid, options',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, ',
     ],
     'types' => [
-		'1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, facebookname, fbappid, options, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
+		'1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, , --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
     ],
     'columns' => [
 		'sys_language_uid' => [
@@ -60,14 +59,6 @@ return [
         'l10n_diffsource' => [
             'config' => [
                 'type' => 'passthrough',
-            ],
-        ],
-		't3ver_label' => [
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.versionLabel',
-            'config' => [
-                'type' => 'input',
-                'size' => 30,
-                'max' => 255,
             ],
         ],
 		'hidden' => [
@@ -107,33 +98,6 @@ return [
                 ]
             ],
         ],
-        'facebookname' => [
-	        'exclude' => true,
-	        'label' => 'LLL:EXT:tp3_facebook/Resources/Private/Language/locallang_db.xlf:tx_tp3facebook_domain_model_fbplugin.facebookname',
-	        'config' => [
-			    'type' => 'input',
-			    'size' => 30,
-			    'eval' => 'trim'
-			],
-	    ],
-	    'fbappid' => [
-	        'exclude' => true,
-	        'label' => 'LLL:EXT:tp3_facebook/Resources/Private/Language/locallang_db.xlf:tx_tp3facebook_domain_model_fbplugin.fbappid',
-	        'config' => [
-			    'type' => 'input',
-			    'size' => 30,
-			    'eval' => 'trim,required'
-			],
-	    ],
-	    'options' => [
-	        'exclude' => true,
-	        'label' => 'LLL:EXT:tp3_facebook/Resources/Private/Language/locallang_db.xlf:tx_tp3facebook_domain_model_fbplugin.options',
-	        'config' => [
-			    'type' => 'text',
-			    'cols' => 40,
-			    'rows' => 15,
-			    'eval' => 'trim'
-			]
-	    ],
+
     ],
 ];

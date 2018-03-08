@@ -6,7 +6,7 @@ defined('TYPO3_MODE') || die();
  */
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
     'tp3_facebook',
-    'Configuration/TypoScrip/Plugint',
-    'FBPlugin'
+    'Configuration/TypoScrip/Plugin',
+    'Fbplugin'
 );
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($extKey, 'Configuration/TypoScript', 'tp3 Facebook');

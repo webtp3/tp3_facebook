@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="nl" datatype="plaintext" original="messages" date="2018-03-07T15:31:53Z">
+		<header>
+			<type>database</type>
+			<description>Language labels for database tables/fields belonging to extension 'facebook_socialplugins'</description>
+			<generator>LFEditor</generator>
+		</header>
+		<body>
+		<trans-unit id="field.app_id" approved="yes">
+			<source>App ID</source>
+			<target>App ID</target>
+		</trans-unit>
+		<trans-unit id="field.attr_url" approved="yes">
+			<source>Attribution URL (From)</source>
+			<target>Toewijzings URL (Van welke website)</target>
+		</trans-unit>
+		<trans-unit id="field.border_color" approved="yes">
+			<source>Border color</source>
+			<target>Randkleur</target>
+		</trans-unit>
+		<trans-unit id="field.color_scheme" approved="yes">
+			<source>Color scheme</source>
+			<target>Kleur schema</target>
+		</trans-unit>
+		<trans-unit id="field.color_scheme.dark" approved="yes">
+			<source>Dark</source>
+			<target>Donker</target>
+		</trans-unit>
+		<trans-unit id="field.color_scheme.light" approved="yes">
+			<source>Light</source>
+			<target>Licht</target>
+		</trans-unit>
+		<trans-unit id="field.connections" approved="yes">
+			<source>Connections</source>
+			<target>Connecties</target>
+		</trans-unit>
+		<trans-unit id="field.css" approved="yes">
+			<source>CSS url (http://www.test.com/test_css.css)</source>
+			<target>CSS url (http://www.test.com/test_css.css)</target>
+		</trans-unit>
+		<trans-unit id="field.domain" approved="yes">
+			<source>Domain</source>
+			<target>Domein</target>
+		</trans-unit>
+		<trans-unit id="field.facebook_url" approved="yes">
+			<source>Facebook URL</source>
+			<target>Facebook URL</target>
+		</trans-unit>
+		<trans-unit id="field.fb_page_id" approved="yes">
+			<source>Facebook page ID</source>
+			<target>Facebook pagina ID</target>
+		</trans-unit>
+		<trans-unit id="field.font" approved="yes">
+			<source>Font</source>
+			<target>Lettertype</target>
+		</trans-unit>
+		<trans-unit id="field.font.arial" approved="yes">
+			<source>Arial</source>
+			<target>Arial</target>
+		</trans-unit>
+		<trans-unit id="field.font.lucida_grande" approved="yes">
+			<source>Lucida Grande</source>
+			<target>Lucida Grande</target>
+		</trans-unit>
+		<trans-unit id="field.font.segoe_ui" approved="yes">
+			<source>Segoe UI</source>
+			<target>Segoe UI</target>
+		</trans-unit>
+		<trans-unit id="field.font.tahoma" approved="yes">
+			<source>Tahoma</source>
+			<target>Tahoma</target>
+		</trans-unit>
+		<trans-unit id="field.font.trebuchet_ms" approved="yes">
+			<source>Trebuchet MS</source>
+			<target>Trebuchet MS</target>
+		</trans-unit>
+		<trans-unit id="field.font.verdana" approved="yes">
+			<source>Verdana</source>
+			<target>Verdana</target>
+		</trans-unit>
+		<trans-unit id="field.height" approved="yes">
+			<source>Height</source>
+			<target>Hoogte</target>
+		</trans-unit>
+		<trans-unit id="field.layout_style" approved="yes">
+			<source>Layout style</source>
+			<target>Layout stijl</target>
+		</trans-unit>
+		<trans-unit id="field.manual" approved="yes">
+			<source>Manual</source>
+			<target>Handleiding</target>
+		</trans-unit>
+		<trans-unit id="field.max_rows" approved="yes">
+			<source>Max rows</source>
+			<target>Max rijen</target>
+		</trans-unit>
+		<trans-unit id="field.noc" approved="yes">
+			<source>Number of Comments</source>
+			<target>Aantal reacties</target>
+		</trans-unit>
+		<trans-unit id="field.num_rows" approved="yes">
+			<source>Number of rows</source>
+			<target>Aantal rijen</target>
+		</trans-unit>
+		<trans-unit id="field.og_description" approved="yes">
+			<source>Open Graph - Description</source>
+			<target>Open Graph - Beschrijving</target>
+		</trans-unit>
+		<trans-unit id="field.og_image_url" approved="yes">
+			<source>Open Graph - Image URL</source>
+			<target>Open Graph - Logo URL</target>
+		</trans-unit>
+		<trans-unit id="field.og_label" approved="yes">
+			<source>Open Graph - Manual</source>
+			<target>Open Graph - Handleiding</target>
+		</trans-unit>
+		<trans-unit id="field.og_sitename" approved="yes">
+			<source>Open Graph - Sitename</source>
+			<target>Open Graph - Sitenaam</target>
+		</trans-unit>
+		<trans-unit id="field.og_title" approved="yes">
+			<source>Open Graph - Title</source>
+			<target>Open Graph - Titel</target>
+		</trans-unit>
+		<trans-unit id="field.og_type" approved="yes">
+			<source>Open Graph - Type</source>
+			<target>Open Graph - Soort</target>
+		</trans-unit>
+		<trans-unit id="field.og_url" approved="yes">
+			<source>Open Graph - URL</source>
+			<target>Open Graph - URL</target>
+		</trans-unit>
+		<trans-unit id="field.page_url" approved="yes">
+			<source>Facebook Page URL</source>
+			<target>Facebook Page URL</target>
+		</trans-unit>
+		<trans-unit id="field.post_to_friends" approved="yes">
+			<source>Always post to friends</source>
+			<target>Altijd naar vrienden plaatsen</target>
+		</trans-unit>
+		<trans-unit id="field.profile_id" approved="yes">
+			<source>Profile ID (Check with: https://graph.facebook.com/your.username)</source>
+			<target>Profiel ID (Check met: https://graph.facebook.com/your.username)</target>
+		</trans-unit>
+		<trans-unit id="field.profile_url" approved="yes">
+			<source>Profile URL</source>
+			<target>Profiel URL</target>
+		</trans-unit>
+		<trans-unit id="field.publish_feed" approved="yes">
+			<source>Publish Feed</source>
+			<target>Publiceer Feed</target>
+		</trans-unit>
+		<trans-unit id="field.send" approved="yes">
+			<source>Send</source>
+			<target>Send</target>
+		</trans-unit>
+		<trans-unit id="field.share" approved="yes">
+			<source>Share</source>
+			<target>Share</target>
+		</trans-unit>
+		<trans-unit id="field.show_border" approved="yes">
+			<source>Show border</source>
+			<target>Show border</target>
+		</trans-unit>
+		<trans-unit id="field.show_faces" approved="yes">
+			<source>Show faces</source>
+			<target>Toon gezichten</target>
+		</trans-unit>
+		<trans-unit id="field.show_header" approved="yes">
+			<source>Show header</source>
+			<target>Toon header</target>
+		</trans-unit>
+		<trans-unit id="field.show_in_iframe" approved="yes">
+			<source>Show in iFrame (Not recommended!)</source>
+			<target>In iFrame tonen (Niet aanbevolen!)</target>
+		</trans-unit>
+		<trans-unit id="field.show_logobar" approved="yes">
+			<source>Show logobar</source>
+			<target>Toon logobar</target>
+		</trans-unit>
+		<trans-unit id="field.show_recommendations" approved="yes">
+			<source>Show recommendations</source>
+			<target>Toon aanbevelingen</target>
+		</trans-unit>
+		<trans-unit id="field.show_stream" approved="yes">
+			<source>Show stream</source>
+			<target>toon stream</target>
+		</trans-unit>
+		<trans-unit id="field.size" approved="yes">
+			<source>Size</source>
+			<target>Grootte</target>
+		</trans-unit>
+		<trans-unit id="field.size.large" approved="yes">
+			<source>Large</source>
+			<target>Groot</target>
+		</trans-unit>
+		<trans-unit id="field.size.small" approved="yes">
+			<source>Small</source>
+			<target>Klein</target>
+		</trans-unit>
+		<trans-unit id="field.tt_news" approved="yes">
+			<source>tt_news compatibility</source>
+			<target>tt_news compatibiliteit</target>
+		</trans-unit>
+		<trans-unit id="field.type" approved="yes">
+			<source>Social Plugin</source>
+			<target>Social Plugin</target>
+		</trans-unit>
+		<trans-unit id="field.type.activity_feed" approved="yes">
+			<source>Activity Feed</source>
+			<target>Activity Feed</target>
+		</trans-unit>
+		<trans-unit id="field.type.comments" approved="yes">
+			<source>Comments</source>
+			<target>Comments</target>
+		</trans-unit>
+		<trans-unit id="field.type.facepile" approved="yes">
+			<source>Facepile</source>
+			<target>Facepile</target>
+		</trans-unit>
+		<trans-unit id="field.type.like_box" approved="yes">
+			<source>Like Box</source>
+			<target>Like Box</target>
+		</trans-unit>
+		<trans-unit id="field.type.like_button" approved="yes">
+			<source>Like Button</source>
+			<target>Like Button</target>
+		</trans-unit>
+		<trans-unit id="field.type.live_stream" approved="yes">
+			<source>Live Stream</source>
+			<target>Live Stream</target>
+		</trans-unit>
+		<trans-unit id="field.type.login_button" approved="yes">
+			<source>Login Button</source>
+			<target>Login Button</target>
+		</trans-unit>
+		<trans-unit id="field.type.recommendations" approved="yes">
+			<source>Recommendations</source>
+			<target>Recommendations</target>
+		</trans-unit>
+		<trans-unit id="field.type.send_button" approved="yes">
+			<source>Send Button</source>
+			<target>Send Button</target>
+		</trans-unit>
+		<trans-unit id="field.type.share_button" approved="yes">
+			<source>Share Button</source>
+			<target>Share Button</target>
+		</trans-unit>
+		<trans-unit id="field.type.subscribe_button" approved="yes">
+			<source>Follow Button</source>
+			<target>Volg Button</target>
+		</trans-unit>
+		<trans-unit id="field.unique_id" approved="yes">
+			<source>Unique ID</source>
+			<target>Unieke ID</target>
+		</trans-unit>
+		<trans-unit id="field.url" approved="yes">
+			<source>URL</source>
+			<target>URL</target>
+		</trans-unit>
+		<trans-unit id="field.url_like" approved="yes">
+			<source>URL to like</source>
+			<target>URL to like</target>
+		</trans-unit>
+		<trans-unit id="field.verb_display" approved="yes">
+			<source>Verb to display</source>
+			<target>Toon:</target>
+		</trans-unit>
+		<trans-unit id="field.verb_display.like" approved="yes">
+			<source>Like</source>
+			<target>Like</target>
+		</trans-unit>
+		<trans-unit id="field.verb_display.recommend" approved="yes">
+			<source>Recommend</source>
+			<target>Recommend</target>
+		</trans-unit>
+		<trans-unit id="field.width" approved="yes">
+			<source>Width</source>
+			<target>Breedte</target>
+		</trans-unit>
+		<trans-unit id="field.xid" approved="yes">
+			<source>XID</source>
+			<target>XID</target>
+		</trans-unit>
+		<trans-unit id="sheet.general" approved="yes">
+			<source>General</source>
+			<target>Algemeen</target>
+		</trans-unit>
+		<trans-unit id="tt_content.tp3facebook_fbplugins" approved="yes">
+			<source>Facebook: Social Plugins</source>
+			<target>Facebook: Social Plugins</target>
+		</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -20,9 +20,9 @@ use TYPO3\CMS\Core\Page\PageRenderer;
   */
 class FBPlugins extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
 {
-    public static  $prefixId      = 'tx_tp3facebook_fbplugins';		// Same as class name
-    public static $extKey        = 'tp3_facebook';	// The extension key.
-    public static $pi_checkCHash = true;
+    public  $prefixId      = 'tx_tp3facebook_fbplugin';		// Same as class name
+    public  $extKey        = 'tp3_facebook';	// The extension key.
+    public  $pi_checkCHash = true;
 
     /**
      *
@@ -66,8 +66,9 @@ class FBPlugins extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
      * @param	array		$conf: The PlugIn configuration
      * @return	The content that is displayed on the website
      */
-    function main($content, $conf) {
+    function main($cObj = "", $conf = "") {
         $this->conf = $conf;
+        $this->cObj = $cObj;
         $this->pi_setPiVarDefaults();
         $this->pi_initPIflexForm();
         $this->ffConf = array();

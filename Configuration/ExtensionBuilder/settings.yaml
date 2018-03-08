@@ -1,6 +1,6 @@
 #
 # Extension Builder settings for extension tp3_facebook
-# generated 2018-03-06T19:31:00Z
+# generated 2018-03-07T19:31:00Z
 #
 # See http://www.yaml.org/spec/1.2/spec.html
 #
@@ -64,7 +64,7 @@ overwriteSettings:
 #  ext_tables.sql: merge
 
 ## use static date attribute in xliff files ##
-#staticDateInXliffFiles: 2018-03-06T19:31:00Z
+#staticDateInXliffFiles: 2018-03-07T19:31:00Z
 
 ## skip docComment (license header) ##
 #skipDocComment

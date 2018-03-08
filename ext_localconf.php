@@ -7,13 +7,13 @@ call_user_func(
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'Tp3.Tp3Facebook',
-            'Fbplugins',
+            'Fbplugin',
             [
-                'FBPlugin' => 'list, edit, show, create, delete'
+                'FbPlugin' => 'list, show'
             ],
             // non-cacheable actions
             [
-                'FBPlugin' => 'create, update, delete, share'
+                'FbPlugin' => 'share'
             ]
         );
 
@@ -22,13 +22,13 @@ call_user_func(
 		'mod {
 			wizards.newContentElement.wizardItems.plugins {
 				elements {
-					fbplugins {
-						icon = ' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($extKey) . 'Resources/Public/Icons/user_plugin_fbplugins.svg
-						title = LLL:EXT:tp3_facebook/Resources/Private/Language/locallang_db.xlf:tx_tp3_facebook_domain_model_fbplugins
-						description = LLL:EXT:tp3_facebook/Resources/Private/Language/locallang_db.xlf:tx_tp3_facebook_domain_model_fbplugins.description
+					fbplugin {
+						icon = ' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($extKey) . 'Resources/Public/Icons/user_plugin_fbplugin.svg
+						title = LLL:EXT:tp3_facebook/Resources/Private/Language/locallang_db.xlf:tx_tp3_facebook_domain_model_fbplugin
+						description = LLL:EXT:tp3_facebook/Resources/Private/Language/locallang_db.xlf:tx_tp3_facebook_domain_model_fbplugin.description
 						tt_content_defValues {
 							CType = list
-							list_type = tp3facebook_fbplugins
+							list_type = tp3facebook_fbplugin
 						}
 					}
 				}

@@ -1,15 +1,23 @@
+# cat=plugin.tp3_facebook/enable/10; type=string; label=LLL:EXT:tp3_facebook/Resources/Language/locallang_tca.xml:constants.appID
+plugin.tx_tp3facebook_fbplugin.appID = {$fbappid}
 
-plugin.tx_tp3facebook_fbplugins {
+# cat=plugin.tp3_facebook/enable/20; type=string; label=LLL:EXT:tp3_facebook/Resources/Language/locallang_tca.xml:constants.language
+plugin.tx_tp3facebook_fbplugin.language = de_DE
+
+# cat=plugin.tp3_facebook/file; type=string; label=LLL:EXT:tp3_facebook/Resources/Language/locallang_tca.xml:constants.templateFile
+plugin.tx_tp3facebook_fbplugin.templateFile = EXT:tp3_facebook/Resources/Private/Templates/template.html
+
+plugin.tx_tp3facebook_fbplugin {
   view {
-    # cat=plugin.tx_tp3facebook_fbplugins/file; type=string; label=Path to template root (FE)
+    # cat=plugin.tx_tp3facebook_fbplugin/file; type=string; label=Path to template root (FE)
     templateRootPath = EXT:tp3_facebook/Resources/Private/Templates/
-    # cat=plugin.tx_tp3facebook_fbplugins/file; type=string; label=Path to template partials (FE)
+    # cat=plugin.tx_tp3facebook_fbplugin/file; type=string; label=Path to template partials (FE)
     partialRootPath = EXT:tp3_facebook/Resources/Private/Partials/
-    # cat=plugin.tx_tp3facebook_fbplugins/file; type=string; label=Path to template layouts (FE)
+    # cat=plugin.tx_tp3facebook_fbplugin/file; type=string; label=Path to template layouts (FE)
     layoutRootPath = EXT:tp3_facebook/Resources/Private/Layouts/
   }
   persistence {
-    # cat=plugin.tx_tp3facebook_fbplugins//a; type=string; label=Default storage PID
+    # cat=plugin.tx_tp3facebook_fbplugin//a; type=string; label=Default storage PID
     storagePid =
   }
 }

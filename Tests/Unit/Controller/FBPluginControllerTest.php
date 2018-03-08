@@ -6,17 +6,17 @@ namespace Tp3\Tp3Facebook\Tests\Unit\Controller;
  *
  * @author Thomas Ruta <email@thomasruta.de>
  */
-class FBPluginControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class FbPluginControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 {
     /**
-     * @var \Tp3\Tp3Facebook\Controller\FBPluginController
+     * @var \Tp3\Tp3Facebook\Controller\FbPluginController
      */
     protected $subject = null;
 
     protected function setUp()
     {
         parent::setUp();
-        $this->subject = $this->getMockBuilder(\Tp3\Tp3Facebook\Controller\FBPluginController::class)
+        $this->subject = $this->getMockBuilder(\Tp3\Tp3Facebook\Controller\FbPluginController::class)
             ->setMethods(['redirect', 'forward', 'addFlashMessage'])
             ->disableOriginalConstructor()
             ->getMock();
@@ -30,22 +30,22 @@ class FBPluginControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * @test
      */
-    public function listActionFetchesAllFBPluginsFromRepositoryAndAssignsThemToView()
+    public function listActionFetchesAllFbPluginsFromRepositoryAndAssignsThemToView()
     {
 
-        $allFBPlugins = $this->getMockBuilder(\TYPO3\CMS\Extbase\Persistence\ObjectStorage::class)
+        $allFbPlugins = $this->getMockBuilder(\TYPO3\CMS\Extbase\Persistence\ObjectStorage::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $fBPluginRepository = $this->getMockBuilder(\Tp3\Tp3Facebook\Domain\Repository\FBPluginRepository::class)
+        $fbPluginRepository = $this->getMockBuilder(\::class)
             ->setMethods(['findAll'])
             ->disableOriginalConstructor()
             ->getMock();
-        $fBPluginRepository->expects(self::once())->method('findAll')->will(self::returnValue($allFBPlugins));
-        $this->inject($this->subject, 'fBPluginRepository', $fBPluginRepository);
+        $fbPluginRepository->expects(self::once())->method('findAll')->will(self::returnValue($allFbPlugins));
+        $this->inject($this->subject, 'fbPluginRepository', $fbPluginRepository);
 
         $view = $this->getMockBuilder(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface::class)->getMock();
-        $view->expects(self::once())->method('assign')->with('fBPlugins', $allFBPlugins);
+        $view->expects(self::once())->method('assign')->with('fbPlugins', $allFbPlugins);
         $this->inject($this->subject, 'view', $view);
 
         $this->subject->listAction();
@@ -54,82 +54,14 @@ class FBPluginControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * @test
      */
-    public function showActionAssignsTheGivenFBPluginToView()
+    public function showActionAssignsTheGivenFbPluginToView()
     {
-        $fBPlugin = new \Tp3\Tp3Facebook\Domain\Model\FBPlugin();
+        $fbPlugin = new \Tp3\Tp3Facebook\Domain\Model\FbPlugin();
 
         $view = $this->getMockBuilder(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface::class)->getMock();
         $this->inject($this->subject, 'view', $view);
-        $view->expects(self::once())->method('assign')->with('fBPlugin', $fBPlugin);
+        $view->expects(self::once())->method('assign')->with('fbPlugin', $fbPlugin);
 
-        $this->subject->showAction($fBPlugin);
-    }
-
-    /**
-     * @test
-     */
-    public function createActionAddsTheGivenFBPluginToFBPluginRepository()
-    {
-        $fBPlugin = new \Tp3\Tp3Facebook\Domain\Model\FBPlugin();
-
-        $fBPluginRepository = $this->getMockBuilder(\Tp3\Tp3Facebook\Domain\Repository\FBPluginRepository::class)
-            ->setMethods(['add'])
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $fBPluginRepository->expects(self::once())->method('add')->with($fBPlugin);
-        $this->inject($this->subject, 'fBPluginRepository', $fBPluginRepository);
-
-        $this->subject->createAction($fBPlugin);
-    }
-
-    /**
-     * @test
-     */
-    public function editActionAssignsTheGivenFBPluginToView()
-    {
-        $fBPlugin = new \Tp3\Tp3Facebook\Domain\Model\FBPlugin();
-
-        $view = $this->getMockBuilder(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface::class)->getMock();
-        $this->inject($this->subject, 'view', $view);
-        $view->expects(self::once())->method('assign')->with('fBPlugin', $fBPlugin);
-
-        $this->subject->editAction($fBPlugin);
-    }
-
-    /**
-     * @test
-     */
-    public function updateActionUpdatesTheGivenFBPluginInFBPluginRepository()
-    {
-        $fBPlugin = new \Tp3\Tp3Facebook\Domain\Model\FBPlugin();
-
-        $fBPluginRepository = $this->getMockBuilder(\Tp3\Tp3Facebook\Domain\Repository\FBPluginRepository::class)
-            ->setMethods(['update'])
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $fBPluginRepository->expects(self::once())->method('update')->with($fBPlugin);
-        $this->inject($this->subject, 'fBPluginRepository', $fBPluginRepository);
-
-        $this->subject->updateAction($fBPlugin);
-    }
-
-    /**
-     * @test
-     */
-    public function deleteActionRemovesTheGivenFBPluginFromFBPluginRepository()
-    {
-        $fBPlugin = new \Tp3\Tp3Facebook\Domain\Model\FBPlugin();
-
-        $fBPluginRepository = $this->getMockBuilder(\Tp3\Tp3Facebook\Domain\Repository\FBPluginRepository::class)
-            ->setMethods(['remove'])
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $fBPluginRepository->expects(self::once())->method('remove')->with($fBPlugin);
-        $this->inject($this->subject, 'fBPluginRepository', $fBPluginRepository);
-
-        $this->subject->deleteAction($fBPlugin);
+        $this->subject->showAction($fbPlugin);
     }
 }

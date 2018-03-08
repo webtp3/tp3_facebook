@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2018-03-07T15:34:42Z">
+		<header>
+			<type>database</type>
+			<fileId>EXT:tp3_facebook/Resources/Language/locallang_tca.xml</fileId>
+			<generator>LFEditor</generator>
+		</header>
+		<body>
+		<trans-unit id="constants.appID" approved="yes">
+			<source>Facebook Developers - App ID: Enter your App ID. If you haven't got one, you can get an App ID here: http://developers.facebook.com/setup/</source>
+			<target>Facebook Developers - App ID: Geben Sie Ihre App ID ein. Wenn Sie noch keine App ID haben, können Sie hier eine beantragen: http://developers.facebook.com/setup/</target>
+		</trans-unit>
+		<trans-unit id="constants.language" approved="yes">
+			<source>The language of the plugin: Use like: en_US, nl_NL, etc</source>
+			<target>Sprache der Plugins: Standard ist en_US</target>
+		</trans-unit>
+		<trans-unit id="constants.templateFile" approved="yes">
+			<source>Template file to use</source>
+			<target>Template Datei</target>
+		</trans-unit>
+		</body>
+	</file>
+</xliff>

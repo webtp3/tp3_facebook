@@ -1,8 +1,0 @@
-	# cat=plugin.tp3_facebook/enable/10; type=string; label=LLL:EXT:tp3_facebook/Resources/Language/locallang_tca.xml:constants.appID
-plugin.tx_tp3facebook_fbplugins.appID = {$fbappid}
-
-	# cat=plugin.tp3_facebook/enable/20; type=string; label=LLL:EXT:tp3_facebook/Resources/Language/locallang_tca.xml:constants.language
-plugin.tx_tp3facebook_fbplugins.language = de_DE
-
-	# cat=plugin.tp3_facebook/file; type=string; label=LLL:EXT:tp3_facebook/Resources/Language/locallang_tca.xml:constants.templateFile
-plugin.tx_tp3facebook_fbplugins.templateFile = EXT:tp3_facebook/Resources/Templates/template.html

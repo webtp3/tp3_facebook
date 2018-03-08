@@ -1,41 +1,8 @@
-&lt;html =&quot;http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers&quot; data-namespace-typo3-fluid=&quot;true&quot;>
-&lt;f:layout name=&quot;Default&quot; />
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
 
-This Template is responsible for creating a table of domain objects.
-
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        List.html: keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
-
-&lt;f:section name=&quot;main&quot;>
-<h1>Listing for fBPlugin</h1>
-
-&lt;f:flashMessages />
-
-<table  class="tx_tp3facebook" >
-	&lt;tr>
-		&lt;th>&lt;f:translate key=&quot;tx_tp3facebook_domain_model_fbplugin.facebookname&quot; />&lt;/th>
-		&lt;th>&lt;f:translate key=&quot;tx_tp3facebook_domain_model_fbplugin.fbappid&quot; />&lt;/th>
-		&lt;th>&lt;f:translate key=&quot;tx_tp3facebook_domain_model_fbplugin.options&quot; />&lt;/th>
-		&lt;th> &lt;/th>
-		&lt;th> &lt;/th>
-	&lt;/tr>
-
-	&lt;f:for each=&quot;{fBPlugins}&quot; as=&quot;fBPlugin&quot;>
-		&lt;tr>
-			&lt;td>&lt;f:link.action action=&quot;show&quot; arguments=&quot;{fBPlugin : fBPlugin}&quot;> {fBPlugin.facebookname}&lt;/td>
-			&lt;td>&lt;f:link.action action=&quot;show&quot; arguments=&quot;{fBPlugin : fBPlugin}&quot;> {fBPlugin.fbappid}&lt;/td>
-			&lt;td>&lt;f:link.action action=&quot;show&quot; arguments=&quot;{fBPlugin : fBPlugin}&quot;> {fBPlugin.options}&lt;/td>
-			&lt;td>&lt;f:link.action action=&quot;edit&quot; arguments=&quot;{fBPlugin : fBPlugin}&quot;>Edit&lt;/td>
-			&lt;td>&lt;f:link.action action=&quot;delete&quot; arguments=&quot;{fBPlugin : fBPlugin}&quot;>Delete&lt;/td>
-		&lt;/tr>
-</table>
-
-&lt;f:link.action action=&quot;new&quot;>New FBPlugin
-
-&lt;/html>
+<f:section name="main">
+    <f:flashMessages />
+    <f:format.raw>{fbPlugins}</f:format.raw>
+</f:section>
+</html>

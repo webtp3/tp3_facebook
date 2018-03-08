@@ -3,8 +3,8 @@
         {
             "config": {
                 "position": [
-                    70,
-                    102
+                    98,
+                    73
                 ]
             },
             "name": "New Model Object",
@@ -12,60 +12,29 @@
                 "actionGroup": {
                     "_default0_list": true,
                     "_default1_show": true,
-                    "_default2_new_create": true,
-                    "_default3_edit_update": true,
-                    "_default4_delete": true,
+                    "_default2_new_create": false,
+                    "_default3_edit_update": false,
+                    "_default4_delete": false,
                     "customActions": [
-                        ""
+                        "share"
                     ]
                 },
-                "name": "FBPlugin",
+                "name": "FbPlugin",
                 "objectsettings": {
                     "addDeletedField": true,
                     "addHiddenField": true,
                     "addStarttimeEndtimeFields": true,
-                    "aggregateRoot": true,
+                    "aggregateRoot": false,
                     "categorizable": false,
                     "description": "",
                     "mapToTable": "",
                     "parentClass": "",
                     "sorting": false,
                     "type": "ValueObject",
-                    "uid": "1314804542682"
+                    "uid": "430913670692"
                 },
                 "propertyGroup": {
-                    "properties": [
-                        {
-                            "allowedFileTypes": "",
-                            "maxItems": "1",
-                            "propertyDescription": "",
-                            "propertyIsExcludeField": true,
-                            "propertyIsRequired": false,
-                            "propertyName": "facebookname",
-                            "propertyType": "String",
-                            "uid": "511354743095"
-                        },
-                        {
-                            "allowedFileTypes": "",
-                            "maxItems": "1",
-                            "propertyDescription": "",
-                            "propertyIsExcludeField": true,
-                            "propertyIsRequired": true,
-                            "propertyName": "fbappid",
-                            "propertyType": "String",
-                            "uid": "1283769623729"
-                        },
-                        {
-                            "allowedFileTypes": "",
-                            "maxItems": "1",
-                            "propertyDescription": "",
-                            "propertyIsExcludeField": true,
-                            "propertyIsRequired": false,
-                            "propertyName": "options",
-                            "propertyType": "Text",
-                            "uid": "668617619727"
-                        }
-                    ]
+                    "properties": []
                 },
                 "relationGroup": {
                     "relations": []
@@ -81,15 +50,15 @@
             "custom_category": "",
             "dependsOn": "typo3 => 7.6.0-8.9.99\n",
             "disableLocalization": false,
-            "disableVersioning": false,
+            "disableVersioning": true,
             "skipGenerateDocumentationTemplate": false,
             "sourceLanguage": "en",
             "state": "alpha",
             "targetVersion": "7.6.0-7.6.99",
-            "version": "0.0.2"
+            "version": "0.0.1"
         },
         "extensionKey": "tp3_facebook",
-        "name": "tp3 Facebook",
+        "name": "tp3 Facebook Plugins",
         "originalExtensionKey": "",
         "originalVendorName": "",
         "persons": [
@@ -103,19 +72,19 @@
         "plugins": [
             {
                 "actions": {
-                    "controllerActionCombinations": "FBPlugin => list,edit,show,create,delete",
-                    "noncacheableActions": "",
+                    "controllerActionCombinations": "FbPlugin => list,show",
+                    "noncacheableActions": "FbPlugin => share",
                     "switchableActions": ""
                 },
-                "key": "fbplugins",
-                "name": "tp3 Facebook Plugins"
+                "key": "fbplugin",
+                "name": "Facebook Plugin"
             }
         ],
         "vendorName": "Tp3"
     },
     "wires": [],
     "log": {
-        "last_modified": "2018-03-06 07:42",
+        "last_modified": "2018-03-07 07:39",
         "extension_builder_version": "7.6.18",
         "be_user": " (1)"
     }

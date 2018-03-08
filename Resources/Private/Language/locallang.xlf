@@ -3,14 +3,14 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2018-03-06T19:42:36Z" product-name="tp3_facebook">
 		<header/>
 		<body>
-			<trans-unit id="tx_tp3_facebook_domain_model_fbplugins">
+			<trans-unit id="tx_tp3_facebook_domain_model_fbplugin">
 				<source>tp3 Facebook Plugins</source>
 			</trans-unit>
-			<trans-unit id="tx_tp3_facebook_domain_model_fbplugins.description">
-				<source></source>
+			<trans-unit id="tx_tp3_facebook_domain_model_fbplugin.description">
+				<source>Alle Social Plugins van Facebook: Activity Feed, Comments, Facepile, Like Button, Like Box, Live Stream, Login Button en Recommendations</source>
 			</trans-unit>
 			<trans-unit id="tx_tp3facebook_domain_model_fbplugin">
-				<source>F B Plugin</source>
+				<source>FB Plugin</source>
 			</trans-unit>
 			<trans-unit id="tx_tp3facebook_domain_model_fbplugin.facebookname">
 				<source>Facebookname</source>
@@ -21,6 +21,8 @@
 			<trans-unit id="tx_tp3facebook_domain_model_fbplugin.options">
 				<source>Options</source>
 			</trans-unit>
+
+
 		</body>
 	</file>
 </xliff>
