@@ -132,10 +132,10 @@ class FBPlugins extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
             if($this->conf['W3Cmode'] == 1){
                 $GLOBALS['TSFE']->additionalHeaderData[$this->extKey] = '<!-- '.$addData.' -->';
             } else {
-                $GLOBALS['TSFE']->additionalHeaderData[$this->extKey] = $addData;
+      //          $GLOBALS['TSFE']->additionalHeaderData[$this->extKey] = $addData;
             }
         }
-
+/*
         if(!empty($this->ffConf['type_form'])){
             $GLOBALS['TSFE']->additionalFooterData[$this->extKey] = '
 			<div id="fb-root"></div>
@@ -149,7 +149,7 @@ class FBPlugins extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
 				}(document, \'script\', \'facebook-jssdk\'));
 			</script>';
         }
-
+*/
         switch($this->ffConf['type_form']){
             case 'activity_feed':
                 $content .= $this->displayActivityFeed();
@@ -233,7 +233,7 @@ class FBPlugins extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
     function displayComments(){
         $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_COMMENTS###');
         $this->marker['###B_PUBLISH_FEED###'] = ($this->marker['###B_PUBLISH_FEED###'] == 1 ? 'true' : 'false');
-        $this->marker['###B_URL###'] = t3lib_div::getIndpEnv('TYPO3_REQUEST_URL');
+        $this->marker['###B_URL###'] = \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL');
         $content = $this->cObj->substituteMarkerArray($template, $this->marker);
         return $content;
     }
@@ -282,7 +282,7 @@ class FBPlugins extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
                     $params[$param] = $value;
                 }
             }
-            $this->marker['###D_URL###'] = t3lib_div::locationHeaderUrl($this->pi_getPageLink($GLOBALS['TSFE']->id,'',$params));
+            $this->marker['###D_URL###'] = \TYPO3\CMS\Core\Utility\GeneralUtility::locationHeaderUrl($this->pi_getPageLink($GLOBALS['TSFE']->id,'',$params));
         }
         $this->marker['###D_SHOW_FACES###'] = ($this->marker['###D_SHOW_FACES###'] == 1 ? 'true' : 'false');
         $this->marker['###D_SHARE###'] = ($this->marker['###D_SHARE###'] == 1 ? 'true' : 'false');
@@ -353,7 +353,7 @@ class FBPlugins extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
                     $params[$param] = $value;
                 }
             }
-            $this->marker['###I_URL###'] = t3lib_div::locationHeaderUrl($this->pi_getPageLink($GLOBALS['TSFE']->id,'',$params));
+            $this->marker['###I_URL###'] = \TYPO3\CMS\Core\Utility\GeneralUtility::locationHeaderUrl($this->pi_getPageLink($GLOBALS['TSFE']->id,'',$params));
         }
         $content = $this->cObj->substituteMarkerArray($template, $this->marker);
         return $content;

@@ -1,5 +1,5 @@
 # cat=plugin.tp3_facebook/enable/10; type=string; label=LLL:EXT:tp3_facebook/Resources/Language/locallang_tca.xml:constants.appID
-plugin.tx_tp3facebook_fbplugin.appID = {$fbappid}
+plugin.tx_tp3facebook_fbplugin.appID = {$facebookid}
 
 # cat=plugin.tp3_facebook/enable/20; type=string; label=LLL:EXT:tp3_facebook/Resources/Language/locallang_tca.xml:constants.language
 plugin.tx_tp3facebook_fbplugin.language = de_DE
