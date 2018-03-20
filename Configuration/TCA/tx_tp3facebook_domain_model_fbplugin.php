@@ -2,7 +2,8 @@
 return [
     'ctrl' => [
         'title'	=> 'LLL:EXT:tp3_facebook/Resources/Private/Language/locallang_db.xlf:tx_tp3facebook_domain_model_fbplugin',
-        'label' => 'uid',
+        'label' => 'header',
+        'label_alt' => 'list_type',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
@@ -10,13 +11,19 @@ return [
         'transOrigPointerField' => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
 		'delete' => 'deleted',
+        'hideAtCopy' => true,
+        'versioningWS' => true,
+        'origUid' => 't3_origuid',
 		'enablecolumns' => [
             'disabled' => 'hidden',
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
 		'searchFields' => '',
-        'iconfile' => 'EXT:tp3_facebook/Resources/Public/Icons/tx_tp3facebook_domain_model_fbplugin.gif'
+        'iconfile' => 'EXT:tp3_facebook/Resources/Public/Icons/user_plugin_fbplugin.svg',
+        'typeicon_classes' => [
+            'default' => 'ext-tp3_facebook-wizard-icon'
+        ],
     ],
     'interface' => [
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, ',
@@ -75,24 +82,28 @@ return [
         ],
 		'starttime' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.starttime',
             'config' => [
                 'type' => 'input',
                 'size' => 13,
                 'eval' => 'datetime',
                 'default' => 0,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ]
             ]
         ],
         'endtime' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.endtime',
             'config' => [
                 'type' => 'input',
                 'size' => 13,
                 'eval' => 'datetime',
                 'default' => 0,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
                 'range' => [
                     'upper' => mktime(0, 0, 0, 1, 1, 2038)
                 ]
