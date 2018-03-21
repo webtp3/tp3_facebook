@@ -287,7 +287,7 @@
 			<source>General</source>
 			<target>Algemeen</target>
 		</trans-unit>
-		<trans-unit id="tt_content.tp3facebook_fbplugins" approved="yes">
+		<trans-unit id="tt_content.tp3facebook_fbplugin" approved="yes">
 			<source>Facebook: Social Plugins</source>
 			<target>Facebook: Social Plugins</target>
 		</trans-unit>

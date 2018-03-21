@@ -6,7 +6,7 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['tp3facebook_
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'Tp3.Tp3Facebook',
-    'Fbplugin',
+    'FBPlugin',
     'Facebook Plugin'
 );
 /* Add the plugins */

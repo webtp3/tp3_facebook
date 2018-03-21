@@ -87,6 +87,7 @@ return [
                 'type' => 'input',
                 'size' => 13,
                 'eval' => 'datetime',
+                'renderType' => 'inputDateTime',
                 'default' => 0,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
@@ -100,6 +101,7 @@ return [
                 'type' => 'input',
                 'size' => 13,
                 'eval' => 'datetime',
+                'renderType' => 'inputDateTime',
                 'default' => 0,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,

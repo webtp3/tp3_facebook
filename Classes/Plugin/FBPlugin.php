@@ -18,7 +18,7 @@ use TYPO3\CMS\Core\Page\PageRenderer;
 /**
  * FBPlugins
   */
-class FBPlugins extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
+class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
 {
     public  $prefixId      = 'tx_tp3facebook_fbplugin';		// Same as class name
     public  $extKey        = 'tp3_facebook';	// The extension key.
@@ -130,26 +130,34 @@ class FBPlugins extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
 				<meta property="fb:app_id" content="'.$this->conf['appID'].'" />
 			';
             if($this->conf['W3Cmode'] == 1){
-                $GLOBALS['TSFE']->additionalHeaderData[$this->extKey] = '<!-- '.$addData.' -->';
+                $GLOBALS['TSFE']->additionalFooterData[$this->extKey] = '<!-- '.$addData.' -->';
             } else {
-      //          $GLOBALS['TSFE']->additionalHeaderData[$this->extKey] = $addData;
+                $GLOBALS['TSFE']->additionalFooterData[$this->extKey] = $addData;
             }
         }
-/*
-        if(!empty($this->ffConf['type_form'])){
-            $GLOBALS['TSFE']->additionalFooterData[$this->extKey] = '
-			<div id="fb-root"></div>
+
+        if(!empty($this->ffConf['type_form']) && $this->conf['loadAPI'] == 1 ){
+            $GLOBALS['TSFE']->additionalFooterData[$this->extKey] = '<div id="fb-root"></div>
 			<script>
-				(function(d, s, id) {
-					var js, fjs = d.getElementsByTagName(s)[0];
-					if (d.getElementById(id)) return;
-					js = d.createElement(s); js.id = id;
-					js.src = "//connect.facebook.net/'.$this->marker['###LOCALE###'].'/sdk.js#xfbml=1&appId='.$this->marker['###APP_ID###'].'&version=v2.0";
-					fjs.parentNode.insertBefore(js, fjs);
-				}(document, \'script\', \'facebook-jssdk\'));
+			 window.fbAsyncInit = function() {
+                    FB.init({
+                      appId            : \''.$this->marker['###APP_ID###'].'\',
+                      autoLogAppEvents : true,
+                      xfbml            : true,
+                      version          : \'v2.12\'
+                    });
+                  };
+			 (function(d, s, id){
+                 var js, fjs = d.getElementsByTagName(s)[0];
+                 if (d.getElementById(id)) {return;}
+                 js = d.createElement(s); js.id = id;
+                 js.src = "https://connect.facebook.net/'.$this->marker['###LOCALE###'].'/sdk.js";
+                 fjs.parentNode.insertBefore(js, fjs);
+               }(document, \'script\', \'facebook-jssdk\'));
+			
 			</script>';
         }
-*/
+
         switch($this->ffConf['type_form']){
             case 'activity_feed':
                 $content .= $this->displayActivityFeed();

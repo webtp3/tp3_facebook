@@ -7,7 +7,7 @@ defined('TYPO3_MODE') || die('Access denied.');
             'mod {
             wizards.newContentElement.wizardItems.plugins {
                 elements {
-                    fbplugin {
+                    FBPlugin {
                         iconIdentifier = ext-'.$_EXTKEY.'-wizard-icon
                         title = LLL:EXT:tp3_facebook/Resources/Private/Language/locallang_db.xlf:tx_tp3_facebook_domain_model_fbplugin
                         description = LLL:EXT:tp3_facebook/Resources/Private/Language/locallang_db.xlf:tx_tp3_facebook_domain_model_fbplugin.description
@@ -24,13 +24,13 @@ defined('TYPO3_MODE') || die('Access denied.');
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'Tp3.Tp3Facebook',
-        'Fbplugin',
+        'FBPlugin',
         [
-            'FbPlugin' => 'list, show'
+            'FBPlugin' => 'list, show'
         ],
         // non-cacheable actions
         [
-            'FbPlugin' => 'share'
+            'FBPlugin' => 'share'
         ]
     );
     /*

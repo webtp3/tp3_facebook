@@ -7,10 +7,10 @@
             <generator>LFEditor</generator>
         </header>
         <body>
-        <trans-unit id="tx_tp3_facebook_domain_model_fbplugins">
+        <trans-unit id="tx_tp3_facebook_domain_model_fbplugin">
             <source>tp3 Facebook Plugins</source>
         </trans-unit>
-        <trans-unit id="tx_tp3_facebook_domain_model_fbplugins.description">
+        <trans-unit id="tx_tp3_facebook_domain_model_fbplugin.description">
             <source></source>
         </trans-unit>
         <trans-unit id="tx_tp3facebook_domain_model_fbplugin">
@@ -293,7 +293,7 @@
 			<source>General</source>
 			<target>Allgemein</target>
 		</trans-unit>
-		<trans-unit id="tt_content.tp3facebook_fbplugins" approved="yes">
+		<trans-unit id="tt_content.tp3facebook_fbplugin" approved="yes">
 			<source>Facebook: Social Plugins</source>
 			<target>Facebook: Social Plugins</target>
 		</trans-unit>

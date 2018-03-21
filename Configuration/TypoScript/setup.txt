@@ -1,6 +1,24 @@
+
 plugin.tx_tp3facebook_fbplugin = USER_INT
 plugin.tx_tp3facebook_fbplugin {
-  userFunc = Tp3\Tp3Facebook\Plugin\FBPlugins->main
+  view {
+    templateRootPaths.0 = EXT:tp3_facebook/Resources/Private/Templates/
+    templateRootPaths.1 = {$plugin.tx_tp3facebook_fbplugin.view.templateRootPath}
+    partialRootPaths.0 = EXT:tp3_facebook/Resources/Private/Partials/
+    partialRootPaths.1 = {$plugin.tx_tp3facebook_fbplugin.view.partialRootPath}
+    layoutRootPaths.0 = EXT:tp3_facebook/Resources/Private/Layouts/
+    layoutRootPaths.1 = {$plugin.tx_tp3facebook_fbplugin.view.layoutRootPath}
+  }
+  persistence {
+    storagePid = {$plugin.tx_tp3facebook_fbplugin.persistence.storagePid}
+    #recursive = 1
+  }
+  features {
+    #skipDefaultArguments = 1
+  }
+  mvc {
+    callDefaultActionIfActionCantBeResolved = 1
+  }
   staticTemplateCheck = 1
 
   appID = {$plugin.tx_tp3facebook_fbplugin.appID}
@@ -226,24 +244,7 @@ plugin.tx_tp3facebook_fbplugin {
     k_width = 450
   }
 
-  view {
-    templateRootPaths.0 = EXT:tp3_facebook/Resources/Private/Templates/
-    templateRootPaths.1 = plugin.tx_tp3facebook_fbplugin.view.templateRootPath
-    partialRootPaths.0 = EXT:tp3_facebook/Resources/Private/Partials/
-    partialRootPaths.1 = plugin.tx_tp3facebook_fbplugin.view.partialRootPath
-    layoutRootPaths.0 = EXT:tp3_facebook/Resources/Private/Layouts/
-    layoutRootPaths.1 = plugin.tx_tp3facebook_fbplugin.view.layoutRootPath
-  }
-  persistence {
-    storagePid = plugin.tx_tp3facebook_fbplugin.persistence.storagePid
-    #recursive = 1
-  }
-  features {
-    #skipDefaultArguments = 1
-  }
-  mvc {
-    callDefaultActionIfActionCantBeResolved = 1
-  }
+
 }
 
 plugin.tx_tp3facebook._CSS_DEFAULT_STYLE (
