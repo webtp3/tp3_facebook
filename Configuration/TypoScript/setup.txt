@@ -19,6 +19,7 @@ plugin.tx_tp3facebook_fbplugin {
   mvc {
     callDefaultActionIfActionCantBeResolved = 1
   }
+  userFunc = Tp3\Tp3Facebook\Plugin\FBPlugin->main
   staticTemplateCheck = 1
 
   appID = {$plugin.tx_tp3facebook_fbplugin.appID}
@@ -142,7 +143,7 @@ plugin.tx_tp3facebook_fbplugin {
     d_og_description =
   }
 
-  # Like Box: http://developers.facebook.com/docs/reference/plugins/like-box/
+  # Page (Like Box): https://developers.facebook.com/docs/plugins/page-plugin
   like_box {
     # Show in iFrame (not recommended!)
     e_show_in_iframe = 0

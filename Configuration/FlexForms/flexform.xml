@@ -792,14 +792,14 @@
 
 
 
-					<!-- Like Box - Begin -->
+					<!-- Page (Like Box) - Begin -->
 					<e_doku>
 						<TCEforms TYPE="array">
 							<label>LLL:EXT:tp3_facebook/Resources/Private/Language/locallang_csh_tx_tp3facebook_domain_model_fbplugin.xlf:tt_content.pi_flexform.field.manual</label>
 							<displayCond>FIELD:type_form:=:like_box</displayCond>
 							<config TYPE="array">
 								<type>none</type>
-								<default>http://developers.facebook.com/docs/reference/plugins/like-box/</default>
+								<default>https://developers.facebook.com/docs/plugins/page-plugin</default>
 							</config>
 						</TCEforms>
 					</e_doku>
@@ -898,8 +898,30 @@
 							<label>LLL:EXT:tp3_facebook/Resources/Private/Language/locallang_csh_tx_tp3facebook_domain_model_fbplugin.xlf:tt_content.pi_flexform.field.show_stream</label>
 							<displayCond>FIELD:type_form:=:like_box</displayCond>
 							<config TYPE="array">
-								<type>check</type>
-								<default>1</default>
+								<type>select</type>
+								<size>3</size>
+								<maxitems>3</maxitems>
+								<mintems>1</mintems>
+
+								<items>
+									<numIndex index="0" type="array">
+										<numIndex index="0">none</numIndex>
+										<numIndex index="1"></numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">timeline</numIndex>
+										<numIndex index="1">timeline</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">events</numIndex>
+										<numIndex index="1">events</numIndex>
+									</numIndex>
+									<numIndex index="3" type="array">
+										<numIndex index="0">messages</numIndex>
+										<numIndex index="1">messages</numIndex>
+									</numIndex>
+
+								</items>
 							</config>
 						</TCEforms>
 					</e_show_stream>
@@ -925,7 +947,7 @@
 							</config>
 						</TCEforms>
 					</e_show_border>
-					<!-- Like Box - End -->
+					<!-- Page (Like Box) - End -->
 
 
 

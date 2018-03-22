@@ -12,8 +12,6 @@ return [
         'transOrigDiffSourceField' => 'l10n_diffsource',
 		'delete' => 'deleted',
         'hideAtCopy' => true,
-        'versioningWS' => true,
-        'origUid' => 't3_origuid',
 		'enablecolumns' => [
             'disabled' => 'hidden',
             'starttime' => 'starttime',

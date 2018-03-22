@@ -188,7 +188,7 @@
 			<source>Facepile</source>
 		</trans-unit>
 		<trans-unit id="tx_tp3facebook_domain_model_fbplugin.type.like_box">
-			<source>Like Box</source>
+			<source>Page (Like Box)</source>
 		</trans-unit>
 		<trans-unit id="tx_tp3facebook_domain_model_fbplugin.type.like_button">
 			<source>Like Button</source>

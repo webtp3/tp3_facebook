@@ -162,7 +162,7 @@
                 <source>Like Button</source>
                 </trans-unit>
                 <trans-unit id="tt_content.pi_flexform.field.type.like_box">
-                <source>Like Box</source>
+                <source>Page (Like Box)</source>
                 </trans-unit>
                 <trans-unit id="tt_content.pi_flexform.field.type.live_stream">
                 <source>Live Stream</source>

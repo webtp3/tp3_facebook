@@ -15,8 +15,9 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Core\Page\PageRenderer;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
 /**
- * FBPlugins
+ * FBPlugin
   */
 class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
 {
@@ -41,23 +42,29 @@ class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
 		//$extensionName = "Tp3share";
 		\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( $key, $this->extKey);
 	}
-	/**
-	 *
-	 * @var \TYPO3\CMS\Core\Page\PageRenderer;
-	 */
-	
-	public $pageRenderer;
+    /**
+     *
+     * @var \TYPO3\CMS\Core\Page\PageRenderer;
+     */
+
+    public $pageRenderer = null;
+    /**
+     *
+     * @var \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+     */
+    public  $cObjRenderer = null;
+
+    /**
+     *
+     * content Object
+     */
+    public  $cObj;
     /**
      *
      * @var \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
      */
     public  $settings;
 
-	/**
-	 *
-	 * @var \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
-	 */
-	public  $cObj;
 
     /**
      * The main method of the PlugIn
@@ -80,7 +87,15 @@ class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         } elseif(empty($this->conf['appID'])){
             return '<b>Enter your App ID in the configuration of this plugin in the Extension Manager.</b><br /><i>If you haven\'t got one, you can get an App ID here: <a href="http://developers.facebook.com/setup/" target="_blank">http://developers.facebook.com/setup/</a></i>';
         }
-
+        if ($this->objectManager === null) {
+            $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+        }
+        if ($this->pageRenderer === null) {
+            $this->pageRenderer = $this->objectManager->get(PageRenderer::class);
+        }
+        if ($this->cObjRenderer === null) {
+            $this->cObjRenderer = $this->objectManager->get(ContentObjectRenderer::class);
+        }
         // decide if plugin is configured via Flexform or TypoScript
         if ($this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'type_form') != '') {
             $mode = 'ff';
@@ -130,18 +145,17 @@ class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
 				<meta property="fb:app_id" content="'.$this->conf['appID'].'" />
 			';
             if($this->conf['W3Cmode'] == 1){
-                $GLOBALS['TSFE']->additionalFooterData[$this->extKey] = '<!-- '.$addData.' -->';
+                $this->pageRendere->addFooterData(['<!-- '.$addData.' -->']);
             } else {
-                $GLOBALS['TSFE']->additionalFooterData[$this->extKey] = $addData;
+                $this->pageRendere->addFooterData([ $addData]);
             }
         }
 
         if(!empty($this->ffConf['type_form']) && $this->conf['loadAPI'] == 1 ){
-            $GLOBALS['TSFE']->additionalFooterData[$this->extKey] = '<div id="fb-root"></div>
-			<script>
-			 window.fbAsyncInit = function() {
+             $content = '<div id="fb-root"></div>';
+            $this->pageRenderer->addJsFooterInlineCode($this->extKey."_fb",'window.fbAsyncInit = function() {
                     FB.init({
-                      appId            : \''.$this->marker['###APP_ID###'].'\',
+                      appId            : \''.$this->conf['appID'].'\',
                       autoLogAppEvents : true,
                       xfbml            : true,
                       version          : \'v2.12\'
@@ -153,9 +167,8 @@ class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
                  js = d.createElement(s); js.id = id;
                  js.src = "https://connect.facebook.net/'.$this->marker['###LOCALE###'].'/sdk.js";
                  fjs.parentNode.insertBefore(js, fjs);
-               }(document, \'script\', \'facebook-jssdk\'));
-			
-			</script>';
+               }(document, \'script\', \'facebook-jssdk\'));');
+
         }
 
         switch($this->ffConf['type_form']){
@@ -302,8 +315,8 @@ class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
 
 
     /**
-     * Displays the Like Box.
-     * http://developers.facebook.com/docs/reference/plugins/like-box/
+     * Displays the Page (Like Box).
+     * https://developers.facebook.com/docs/plugins/page-plugin
      *
      * @return	STRING	$content	...
      */
@@ -314,7 +327,9 @@ class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
             $content = '';
         }
         $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_LIKE_BOX'.$this->templatePrefix.'###');
-        $this->marker['###E_SHOW_STREAM###'] = ($this->marker['###E_SHOW_STREAM###'] == 1 ? 'true' : 'false');
+        //fall back for old api entries
+        if($this->marker['###E_SHOW_STREAM###'] == 1)  $this->marker['###E_SHOW_STREAM###'] = 'timeline';
+
         $this->marker['###E_SHOW_HEADER###'] = ($this->marker['###E_SHOW_HEADER###'] == 1 ? 'true' : 'false');
         $this->marker['###E_SHOW_FACES###'] = ($this->marker['###E_SHOW_FACES###'] == 1 ? 'true' : 'false');
         $this->marker['###E_SHOW_BORDER###'] = ($this->marker['###E_SHOW_BORDER###'] == 1 ? 'true' : 'false');

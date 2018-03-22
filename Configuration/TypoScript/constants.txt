@@ -2,7 +2,7 @@
 plugin.tx_tp3facebook_fbplugin.appID = {$facebookid}
 
 # cat=plugin.tp3_facebook/enable/10; type=string; label=LLL:EXT:tp3_facebook/Resources/Language/locallang_tca.xml:constants.appID
-plugin.tx_tp3facebook_fbplugin.loadAPI = 1
+plugin.tx_tp3facebook_fbplugin.loadAPI = 0
 
 # cat=plugin.tp3_facebook/enable/20; type=string; label=LLL:EXT:tp3_facebook/Resources/Language/locallang_tca.xml:constants.language
 plugin.tx_tp3facebook_fbplugin.language = de_DE

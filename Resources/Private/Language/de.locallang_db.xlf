@@ -226,8 +226,8 @@
 			<target>Facepile</target>
 		</trans-unit>
 		<trans-unit id="field.type.like_box" approved="yes">
-			<source>Like Box</source>
-			<target>Like Box</target>
+			<source>Page (Like Box)</source>
+			<target>Page (Like Box)</target>
 		</trans-unit>
 		<trans-unit id="field.type.like_button" approved="yes">
 			<source>Like Button</source>

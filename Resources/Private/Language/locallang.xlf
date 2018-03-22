@@ -7,7 +7,7 @@
 				<source>tp3 Facebook Plugins</source>
 			</trans-unit>
 			<trans-unit id="tx_tp3_facebook_domain_model_fbplugin.description">
-				<source>Alle Social Plugins van Facebook: Activity Feed, Comments, Facepile, Like Button, Like Box, Live Stream, Login Button en Recommendations</source>
+				<source>Alle Social Plugins van Facebook: Activity Feed, Comments, Facepile, Like Button, Page (Like Box), Live Stream, Login Button en Recommendations</source>
 			</trans-unit>
 			<trans-unit id="tx_tp3facebook_domain_model_fbplugin">
 				<source>FB Plugin</source>
