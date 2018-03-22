@@ -196,7 +196,7 @@ class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
             case 'subscribe_button':
                 $content .= $this->displaySubscribeButton();
                 break;
-            case 'share_button':
+            case 'fan_box':
                 $content .= $this->displayShareButton();
                 break;
             case 'embedded':
@@ -414,6 +414,7 @@ class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
      */
     function displayShareButton(){
         $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_SHARE_BUTTON###');
+        $this->marker['###K_WIDTH###'] = (is_integer($this->marker['###K_WIDTH###']) ? 'small' :  $this->marker['###K_WIDTH###'] );
         $content = $this->cObj->substituteMarkerArray($template, $this->marker);
         return $content;
     }

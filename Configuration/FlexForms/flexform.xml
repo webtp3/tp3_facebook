@@ -1385,7 +1385,7 @@
 					<k_doku>
 						<TCEforms TYPE="array">
 							<label>LLL:EXT:tp3_facebook/Resources/Private/Language/locallang_csh_tx_tp3facebook_domain_model_fbplugin.xlf:tt_content.pi_flexform.field.manual</label>
-							<displayCond>FIELD:type_form:=:share_button</displayCond>
+							<displayCond>FIELD:type_form:=:fan_box</displayCond>
 							<config TYPE="array">
 								<type>none</type>
 								<default>http://developers.facebook.com/docs/plugins/share-button</default>
@@ -1396,7 +1396,7 @@
 					<k_url type="array">
 						<TCEforms type="array">
 							<label>LLL:EXT:tp3_facebook/Resources/Private/Language/locallang_csh_tx_tp3facebook_domain_model_fbplugin.xlf:tt_content.pi_flexform.field.url</label>
-							<displayCond>FIELD:type_form:=:share_button</displayCond>
+							<displayCond>FIELD:type_form:=:fan_box</displayCond>
 							<config type="array">
 								<type>input</type>
 							</config>
@@ -1406,17 +1406,56 @@
 					<k_width type="array">
 						<TCEforms type="array">
 							<label>LLL:EXT:tp3_facebook/Resources/Private/Language/locallang_csh_tx_tp3facebook_domain_model_fbplugin.xlf:tt_content.pi_flexform.field.width</label>
-							<displayCond>FIELD:type_form:=:share_button</displayCond>
+							<displayCond>FIELD:type_form:=:fan_box</displayCond>
 							<config type="array">
-								<size>5</size>
-								<max>5</max>
-								<checkbox>1</checkbox>
-								<eval>required,int</eval>
-								<type>input</type>
-								<default>250</default>
+								<type>select</type>
+								<eval>required</eval>
+								<size>1</size>
+								<maxitems>1</maxitems>
+								<items>
+									<numIndex index="0" type="array">
+										<numIndex index="0">small</numIndex>
+										<numIndex index="1">small</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">large</numIndex>
+										<numIndex index="1">large</numIndex>
+									</numIndex>
+
+								</items>
 							</config>
 						</TCEforms>
 					</k_width>
+					<k_layout type="array">
+						<TCEforms type="array">
+							<label>LLL:EXT:tp3_facebook/Resources/Private/Language/locallang_csh_tx_tp3facebook_domain_model_fbplugin.xlf:tt_content.pi_flexform.field.layout</label>
+							<displayCond>FIELD:type_form:=:fan_box</displayCond>
+							<config type="array">
+								<type>select</type>
+								<eval>required</eval>
+								<size>1</size>
+								<maxitems>1</maxitems>
+								<items>
+									<numIndex index="0" type="array">
+										<numIndex index="0"></numIndex>
+										<numIndex index="1">0</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">button count</numIndex>
+										<numIndex index="1">button_count</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">box count</numIndex>
+										<numIndex index="1">box_count</numIndex>
+									</numIndex>
+									<numIndex index="3" type="array">
+										<numIndex index="0">button</numIndex>
+										<numIndex index="1">button</numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</k_layout>
 					<!-- Share Button - End -->
 
 
