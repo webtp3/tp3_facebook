@@ -3,7 +3,7 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2018-03-07T15:34:42Z">
 		<header>
 			<type>database</type>
-			<fileId>EXT:tp3_facebook/Resources/Language/locallang_tca.xml</fileId>
+			<fileId>EXT:3tp3_facebook/Resources/Language/locallang_tca.xml</fileId>
 			<generator>LFEditor</generator>
 		</header>
 		<body>
