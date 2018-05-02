@@ -61,7 +61,7 @@ class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
     public  $cObj;
     /**
      *
-     * @var \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+     *
      */
     public  $settings;
 

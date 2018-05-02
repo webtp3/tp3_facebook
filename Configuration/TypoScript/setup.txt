@@ -21,7 +21,7 @@ plugin.tx_tp3facebook_fbplugin {
   }
   userFunc = Tp3\Tp3Facebook\Plugin\FBPlugin->main
   staticTemplateCheck = 1
-
+  loadAPI = {$plugin.tx_tp3facebook_fbplugin.settings.loadAPI}
   appID = {$plugin.tx_tp3facebook_fbplugin.appID}
   language = {$plugin.tx_tp3facebook_fbplugin.language}
   templateFile = {$plugin.tx_tp3facebook_fbplugin.templateFile}
