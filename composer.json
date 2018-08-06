@@ -1,0 +1,23 @@
+{
+    "name": "web-tp3/tp3-facebook",
+    "type": "typo3-cms-extension",
+    "title" : "tp3 Facebook Social Plugins",
+    "description" : "use Facebook Social Plugins - page, Comment and more",
+    "license": "GPL-2.0+",
+    "require": {
+        "php": ">=5.3 <7.2",
+        "typo3/cms-core": "^7.6|| ^8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tp3\\TpFacebook\\": "Classes"
+        }
+    },
+    "replace": {
+        "tp3_facebook": "self.version"
+    },
+    "suggest": {
+        "web-tp3/tp3social": "*"
+    }
+    
+}
