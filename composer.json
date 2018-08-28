@@ -5,8 +5,8 @@
     "description" : "use Facebook Social Plugins - page, Comment and more",
     "license": "GPL-2.0+",
     "require": {
-        "php": ">=5.3 <7.2",
-        "typo3/cms-core": "^7.6|| ^8.2"
+        "php": ">=5.3 < 7.3",
+        "typo3/cms-core": "^7.6|| ^8.2 || ^9"
     },
     "autoload": {
         "psr-4": {
