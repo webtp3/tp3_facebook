@@ -14,7 +14,8 @@
         }
     },
     "replace": {
-        "tp3_facebook": "self.version"
+        "tp3_facebook": "self.version",
+        "web-tp3/tp3_facebook": "self.version"
     },
     "suggest": {
         "web-tp3/tp3_facebook": "*"
