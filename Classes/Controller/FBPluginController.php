@@ -20,7 +20,7 @@ namespace Tp3\Tp3Facebook\Controller;
  ***/
 
 /**
- * FbPluginController
+ * FBPluginController
  */
 class FBPluginController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {

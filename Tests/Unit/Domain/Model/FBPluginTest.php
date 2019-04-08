@@ -8,21 +8,23 @@
 
 namespace Tp3\Tp3Facebook\Tests\Unit\Domain\Model;
 
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
+
 /**
- * Test case.
+ * Tests for domains model EventModel
  *
  */
-class FbPluginTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class FBPluginTest extends UnitTestCase
 {
     /**
-     * @var \Tp3\Tp3Facebook\Domain\Model\FbPlugin
+     * @var \Tp3\Tp3Facebook\Domain\Model\FBPlugin
      */
     protected $subject = null;
 
     protected function setUp()
     {
         parent::setUp();
-        $this->subject = new \Tp3\Tp3Facebook\Domain\Model\FbPlugin();
+        $this->subject = new \Tp3\Tp3Facebook\Domain\Model\FBPlugin();
     }
 
     protected function tearDown()
