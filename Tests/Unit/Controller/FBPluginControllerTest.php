@@ -37,7 +37,7 @@ class FbPluginControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $fbPluginRepository = $this->getMockBuilder(\::class)
+        $fbPluginRepository = $this->getMockBuilder(\Tp3\Tp3Facebook\Domain\Repository\FBPluginRepository::class)
             ->setMethods(['findAll'])
             ->disableOriginalConstructor()
             ->getMock();

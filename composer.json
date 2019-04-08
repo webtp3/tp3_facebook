@@ -1,16 +1,28 @@
 {
     "name": "web-tp3/tp3-facebook",
     "type": "typo3-cms-extension",
-    "title" : "tp3 Facebook Social Plugins",
     "description" : "use Facebook Social Plugins - page, Comment and more",
+    "homepage": "https://web.tp3.de/manual/tp3-facebook.html",
     "license": "GPL-2.0+",
     "require": {
-        "php": ">=5.3 < 7.3",
+        "php": "7.0 < 7.3",
         "typo3/cms-core": "^7.6|| ^8.2 || ^9"
+    },
+    "require-dev": {
+        "nimut/testing-framework": "^1.0 || ^2.0 || ^3.0 || ^4.0",
+        "web-tp3/cag_tests":"^1.2",
+        "phpunit/phpunit": "*",
+        "helhum/typo3-console": "^5",
+        "typo3/testing-framework": "*"
     },
     "autoload": {
         "psr-4": {
             "Tp3\\Tp3Facebook\\": "Classes"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tp3\\Tp3Facebook\\": "Tests/"
         }
     },
     "replace": {
@@ -19,6 +31,16 @@
     },
     "suggest": {
         "web-tp3/tp3_facebook": "*"
+    },
+    "scripts": {
+        "test:php:unit": [
+            "@php -v",
+            "@php .Build/bin/phpunit Tests/Unit"
+        ]
+
+    },
+    "config": {
+        "vendor-dir": ".Build/vendor",
+        "bin-dir": ".Build/bin"
     }
-    
 }
