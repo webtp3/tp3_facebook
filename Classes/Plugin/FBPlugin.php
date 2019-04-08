@@ -1,4 +1,11 @@
 <?php
+
+/*
+ * This file is part of the web-tp3/tp3-facebook.
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace Tp3\Tp3Facebook\Plugin;
 
 /***
@@ -11,60 +18,57 @@ namespace Tp3\Tp3Facebook\Plugin;
  *  (c) 2017 Thomas Ruta <email@thomasruta.de>, R&P IT Consulting GmbH
  *
  ***/
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
-use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Core\Page\PageRenderer;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+
 /**
  * FBPlugin
   */
-class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
+class FBPlugin extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
 {
-    public  $prefixId      = 'tx_tp3facebook_fbplugin';		// Same as class name
-    public  $extKey        = 'tp3_facebook';	// The extension key.
-    public  $pi_checkCHash = true;
+    public $prefixId      = 'tx_tp3facebook_fbplugin';		// Same as class name
+    public $extKey        = 'tp3_facebook';	// The extension key.
+    public $pi_checkCHash = true;
 
     /**
      *
      * @var layout;
      */
-
     public $layout;
 
-	/**
-	 * action translate
-	 *
-	 * @return string
-	 */
-	
-	private function gettranslation($key){
-		//$extensionName = "Tp3share";
-		\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( $key, $this->extKey);
-	}
+    /**
+     * action translate
+     *
+     * @return string
+     */
+    private function gettranslation($key)
+    {
+        //$extensionName = "Tp3share";
+        \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($key, $this->extKey);
+    }
     /**
      *
      * @var \TYPO3\CMS\Core\Page\PageRenderer;
      */
-
     public $pageRenderer = null;
     /**
      *
      * @var \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
      */
-    public  $cObjRenderer = null;
+    public $cObjRenderer = null;
 
     /**
      *
      * content Object
      */
-    public  $cObj;
+    public $cObj;
     /**
      *
      *
      */
-    public  $settings;
-
+    public $settings;
 
     /**
      * The main method of the PlugIn
@@ -73,18 +77,19 @@ class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
      * @param	array		$conf: The PlugIn configuration
      * @return	The content that is displayed on the website
      */
-    function main($cObj = "", $conf = "") {
+    public function main($cObj = '', $conf = '')
+    {
         $this->conf = $conf;
         $this->cObj = $cObj;
         $this->pi_setPiVarDefaults();
         $this->pi_initPIflexForm();
-        $this->ffConf = array();
+        $this->ffConf = [];
         $this->templateFile = $this->cObj->fileResource($this->conf['templateFile']);
 
         // Check if static template and App ID is loaded
-        if($this->conf['staticTemplateCheck'] != 1){
+        if ($this->conf['staticTemplateCheck'] != 1) {
             return '<b>Please include the static template!</b>';
-        } elseif(empty($this->conf['appID'])){
+        } elseif (empty($this->conf['appID'])) {
             return '<b>Enter your App ID in the configuration of this plugin in the Extension Manager.</b><br /><i>If you haven\'t got one, you can get an App ID here: <a href="http://developers.facebook.com/setup/" target="_blank">http://developers.facebook.com/setup/</a></i>';
         }
         if ($this->objectManager === null) {
@@ -107,24 +112,24 @@ class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
             return '<b>You have to set type_form via TypoScript or Flexform!</b>';
         }
 
-        switch($mode){
+        switch ($mode) {
             case 'ff':
-                foreach($this->cObj->data['pi_flexform']['data']['sDEF']['lDEF'] as $key => $value){
+                foreach ($this->cObj->data['pi_flexform']['data']['sDEF']['lDEF'] as $key => $value) {
                     $this->ffConf[$key] = $value['vDEF'];
-                    $this->marker['###'.strtoupper($key).'###'] = $value['vDEF'];
+                    $this->marker['###' . strtoupper($key) . '###'] = $value['vDEF'];
                 }
                 break;
             case 'ts':
-                foreach($this->conf[$this->ffConf['type_form'].'.'] as $key => $value){
+                foreach ($this->conf[$this->ffConf['type_form'] . '.'] as $key => $value) {
                     $this->ffConf[$key] = $value;
-                    $this->marker['###'.strtoupper($key).'###'] = $value;
+                    $this->marker['###' . strtoupper($key) . '###'] = $value;
                 }
                 break;
         }
 
-        if(!empty($this->conf['language'])){
+        if (!empty($this->conf['language'])) {
             $this->language = $this->conf['language'];
-        } elseif(empty($this->conf['language']) && !empty($GLOBALS['TSFE']->config['config']['locale_all'])) {
+        } elseif (empty($this->conf['language']) && !empty($GLOBALS['TSFE']->config['config']['locale_all'])) {
             $this->language = $GLOBALS['TSFE']->config['config']['locale_all'];
         } else {
             $this->language = 'en_US';
@@ -134,28 +139,28 @@ class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         $this->marker['###APP_ID###'] = $this->conf['appID'];
 
         // Add extra <html> tag attribute (for IE)
-        if($this->ffConf['type_form'] == 'like_button' && !empty($this->ffConf['d_og_title']) && !empty($this->ffConf['d_og_type']) && !empty($this->ffConf['d_og_url']) && !empty($this->ffConf['d_og_image_url']) && !empty($this->ffConf['d_og_sitename']) && !empty($this->ffConf['d_og_description'])){
+        if ($this->ffConf['type_form'] == 'like_button' && !empty($this->ffConf['d_og_title']) && !empty($this->ffConf['d_og_type']) && !empty($this->ffConf['d_og_url']) && !empty($this->ffConf['d_og_image_url']) && !empty($this->ffConf['d_og_sitename']) && !empty($this->ffConf['d_og_description'])) {
             $addData = '
-				<meta property="og:title" content="'.$this->ffConf['d_og_title'].'" />
-				<meta property="og:type" content="'.$this->ffConf['d_og_type'].'" />
-				<meta property="og:url" content="'.$this->ffConf['d_og_url'].'" />
-				<meta property="og:image" content="'.$this->ffConf['d_og_image_url'].'" />
-				<meta property="og:site_name" content="'.$this->ffConf['d_og_sitename'].'" />
-				<meta property="og:description" content="'.$this->ffConf['d_og_description'].'"/>
-				<meta property="fb:app_id" content="'.$this->conf['appID'].'" />
+				<meta property="og:title" content="' . $this->ffConf['d_og_title'] . '" />
+				<meta property="og:type" content="' . $this->ffConf['d_og_type'] . '" />
+				<meta property="og:url" content="' . $this->ffConf['d_og_url'] . '" />
+				<meta property="og:image" content="' . $this->ffConf['d_og_image_url'] . '" />
+				<meta property="og:site_name" content="' . $this->ffConf['d_og_sitename'] . '" />
+				<meta property="og:description" content="' . $this->ffConf['d_og_description'] . '"/>
+				<meta property="fb:app_id" content="' . $this->conf['appID'] . '" />
 			';
-            if($this->conf['W3Cmode'] == 1){
-                $this->pageRendere->addFooterData(['<!-- '.$addData.' -->']);
+            if ($this->conf['W3Cmode'] == 1) {
+                $this->pageRendere->addFooterData(['<!-- ' . $addData . ' -->']);
             } else {
                 $this->pageRendere->addFooterData([ $addData]);
             }
         }
 
-        if(!empty($this->ffConf['type_form']) && $this->conf['loadAPI'] == 1 ){
-             $content = '<div id="fb-root"></div>';
-            $this->pageRenderer->addJsFooterInlineCode($this->extKey."_fb",'window.fbAsyncInit = function() {
+        if (!empty($this->ffConf['type_form']) && $this->conf['loadAPI'] == 1) {
+            $content = '<div id="fb-root"></div>';
+            $this->pageRenderer->addJsFooterInlineCode($this->extKey . '_fb', 'window.fbAsyncInit = function() {
                     FB.init({
-                      appId            : \''.$this->conf['appID'].'\',
+                      appId            : \'' . $this->conf['appID'] . '\',
                       autoLogAppEvents : true,
                       xfbml            : true,
                       version          : \'v2.12\'
@@ -165,13 +170,12 @@ class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
                  var js, fjs = d.getElementsByTagName(s)[0];
                  if (d.getElementById(id)) {return;}
                  js = d.createElement(s); js.id = id;
-                 js.src = "https://connect.facebook.net/'.$this->marker['###LOCALE###'].'/sdk.js";
+                 js.src = "https://connect.facebook.net/' . $this->marker['###LOCALE###'] . '/sdk.js";
                  fjs.parentNode.insertBefore(js, fjs);
                }(document, \'script\', \'facebook-jssdk\'));');
-
         }
 
-        switch($this->ffConf['type_form']){
+        switch ($this->ffConf['type_form']) {
             case 'activity_feed':
                 $content .= $this->displayActivityFeed();
                 break;
@@ -205,23 +209,19 @@ class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         }
 
         if ($content != '') {
-            if($this->conf['W3Cmode'] == 1){
+            if ($this->conf['W3Cmode'] == 1) {
                 $content = '<script language="javascript" type="text/javascript">
                     //<![CDATA[
-                    document.write(\''.str_replace('
-                    ','',$content).'\');
+                    document.write(\'' . str_replace('
+                    ', '', $content) . '\');
                     //]]>
                     </script>';
             }
             return $this->pi_wrapInBaseClass($content);
-        }
-        else {
+        } else {
             return '';
         }
     }
-
-
-
 
     /**
      * Displays the Activity Feed.
@@ -229,21 +229,19 @@ class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
      *
      * @return	STRING	$content	...
      */
-    function displayActivityFeed(){
-        if($this->ffConf['a_show_in_iframe'] == 1){
+    public function displayActivityFeed()
+    {
+        if ($this->ffConf['a_show_in_iframe'] == 1) {
             $this->templatePrefix = '_IFRAME';
         } else {
             $content = '';
         }
-        $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_ACTIVITY_FEED'.$this->templatePrefix.'###');
+        $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_ACTIVITY_FEED' . $this->templatePrefix . '###');
         $this->marker['###A_SHOW_HEADER###'] = ($this->marker['###A_SHOW_HEADER###'] == 1 ? 'true' : 'false');
         $this->marker['###A_SHOW_RECOMMENDATIONS###'] = ($this->marker['###A_SHOW_RECOMMENDATIONS###'] == 1 ? 'true' : 'false');
         $content .= $this->cObj->substituteMarkerArray($template, $this->marker);
         return $content;
     }
-
-
-
 
     /**
      * Displays the Comments box.
@@ -251,7 +249,8 @@ class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
      *
      * @return	STRING	$content	...
      */
-    function displayComments(){
+    public function displayComments()
+    {
         $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_COMMENTS###');
         $this->marker['###B_PUBLISH_FEED###'] = ($this->marker['###B_PUBLISH_FEED###'] == 1 ? 'true' : 'false');
         $this->marker['###B_URL###'] = \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL');
@@ -259,17 +258,15 @@ class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         return $content;
     }
 
-
-
-
     /**
      * Displays the Facepile plugin.
      * http://developers.facebook.com/docs/reference/plugins/facepile/
      *
      * @return	STRING	$content	...
      */
-    function displayFacepile(){
-        if($this->ffConf['c_show_in_iframe'] == 1){
+    public function displayFacepile()
+    {
+        if ($this->ffConf['c_show_in_iframe'] == 1) {
             $this->templatePrefix = '_IFRAME';
         } else {
             $content = '';
@@ -279,31 +276,29 @@ class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         return $content;
     }
 
-
-
-
     /**
      * Displays the Like button.
      * http://developers.facebook.com/docs/reference/plugins/like/
      *
      * @return	STRING	$content	...
      */
-    function displayLikeButton(){
-        if($this->ffConf['d_show_in_iframe'] == 1){
+    public function displayLikeButton()
+    {
+        if ($this->ffConf['d_show_in_iframe'] == 1) {
             $this->templatePrefix = '_IFRAME';
         } else {
             $content = '';
         }
 
-        $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_LIKE_BUTTON'.$this->templatePrefix.'###');
-        if(!$this->marker['###D_URL###'] || (!empty($_GET['tx_ttnews']['tt_news']) && $this->ffConf['d_tt_news'] == 1)){
-            $params = array();
-            foreach($_GET as $param => $value){
-                if (substr($param,0,2) != '__'){
+        $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_LIKE_BUTTON' . $this->templatePrefix . '###');
+        if (!$this->marker['###D_URL###'] || (!empty($_GET['tx_ttnews']['tt_news']) && $this->ffConf['d_tt_news'] == 1)) {
+            $params = [];
+            foreach ($_GET as $param => $value) {
+                if (substr($param, 0, 2) != '__') {
                     $params[$param] = $value;
                 }
             }
-            $this->marker['###D_URL###'] = \TYPO3\CMS\Core\Utility\GeneralUtility::locationHeaderUrl($this->pi_getPageLink($GLOBALS['TSFE']->id,'',$params));
+            $this->marker['###D_URL###'] = \TYPO3\CMS\Core\Utility\GeneralUtility::locationHeaderUrl($this->pi_getPageLink($GLOBALS['TSFE']->id, '', $params));
         }
         $this->marker['###D_SHOW_FACES###'] = ($this->marker['###D_SHOW_FACES###'] == 1 ? 'true' : 'false');
         $this->marker['###D_SHARE###'] = ($this->marker['###D_SHARE###'] == 1 ? 'true' : 'false');
@@ -311,24 +306,24 @@ class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         return $content;
     }
 
-
-
-
     /**
      * Displays the Page (Like Box).
      * https://developers.facebook.com/docs/plugins/page-plugin
      *
      * @return	STRING	$content	...
      */
-    function displayLikeBox(){
-        if($this->ffConf['e_show_in_iframe'] == 1){
+    public function displayLikeBox()
+    {
+        if ($this->ffConf['e_show_in_iframe'] == 1) {
             $this->templatePrefix = '_IFRAME';
         } else {
             $content = '';
         }
-        $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_LIKE_BOX'.$this->templatePrefix.'###');
+        $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_LIKE_BOX' . $this->templatePrefix . '###');
         //fall back for old api entries
-        if($this->marker['###E_SHOW_STREAM###'] == 1)  $this->marker['###E_SHOW_STREAM###'] = 'timeline';
+        if ($this->marker['###E_SHOW_STREAM###'] == 1) {
+            $this->marker['###E_SHOW_STREAM###'] = 'timeline';
+        }
 
         $this->marker['###E_SHOW_HEADER###'] = ($this->marker['###E_SHOW_HEADER###'] == 1 ? 'true' : 'false');
         $this->marker['###E_SHOW_FACES###'] = ($this->marker['###E_SHOW_FACES###'] == 1 ? 'true' : 'false');
@@ -337,29 +332,24 @@ class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         return $content;
     }
 
-
-
-
     /**
      * Displays the Recommendations plugin.
      * http://developers.facebook.com/docs/reference/plugins/recommendations/
      *
      * @return	STRING	$content	...
      */
-    function displayRecommendations(){
-        if($this->ffConf['h_show_in_iframe'] == 1){
+    public function displayRecommendations()
+    {
+        if ($this->ffConf['h_show_in_iframe'] == 1) {
             $this->templatePrefix = '_IFRAME';
         } else {
             $content = '';
         }
-        $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_RECOMMENDATIONS'.$this->templatePrefix.'###');
+        $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_RECOMMENDATIONS' . $this->templatePrefix . '###');
         $this->marker['###H_SHOW_HEADER###'] = ($this->marker['###H_SHOW_HEADER###'] == 1 ? 'true' : 'false');
         $content .= $this->cObj->substituteMarkerArray($template, $this->marker);
         return $content;
     }
-
-
-
 
     /**
      * Displays the Send Button.
@@ -367,23 +357,21 @@ class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
      *
      * @return	STRING	$content	...
      */
-    function displaySendButton(){
+    public function displaySendButton()
+    {
         $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_SEND_BUTTON###');
-        if(!$this->marker['###I_URL##']){
-            $params = array();
-            foreach($_GET as $param => $value){
-                if (substr($param,0,2) != '__'){
+        if (!$this->marker['###I_URL##']) {
+            $params = [];
+            foreach ($_GET as $param => $value) {
+                if (substr($param, 0, 2) != '__') {
                     $params[$param] = $value;
                 }
             }
-            $this->marker['###I_URL###'] = \TYPO3\CMS\Core\Utility\GeneralUtility::locationHeaderUrl($this->pi_getPageLink($GLOBALS['TSFE']->id,'',$params));
+            $this->marker['###I_URL###'] = \TYPO3\CMS\Core\Utility\GeneralUtility::locationHeaderUrl($this->pi_getPageLink($GLOBALS['TSFE']->id, '', $params));
         }
         $content = $this->cObj->substituteMarkerArray($template, $this->marker);
         return $content;
     }
-
-
-
 
     /**
      * Displays the Subscribe Button.
@@ -391,8 +379,9 @@ class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
      *
      * @return	STRING	$content	...
      */
-    function displaySubscribeButton(){
-        if($this->ffConf['j_show_in_iframe'] == 1){
+    public function displaySubscribeButton()
+    {
+        if ($this->ffConf['j_show_in_iframe'] == 1) {
             $this->templatePrefix = '_IFRAME';
         } else {
             $content = '';
@@ -403,24 +392,19 @@ class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         return $content;
     }
 
-
-
-
     /**
      * Displays the Share Button.
      * http://developers.facebook.com/docs/plugins/share-button
      *
      * @return	STRING	$content	...
      */
-    function displayShareButton(){
+    public function displayShareButton()
+    {
         $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_SHARE_BUTTON###');
-        $this->marker['###K_WIDTH###'] = (is_integer($this->marker['###K_WIDTH###']) ? 'small' :  $this->marker['###K_WIDTH###'] );
+        $this->marker['###K_WIDTH###'] = (is_int($this->marker['###K_WIDTH###']) ? 'small' :  $this->marker['###K_WIDTH###']);
         $content = $this->cObj->substituteMarkerArray($template, $this->marker);
         return $content;
     }
-
-
-
 
     /**
      * Displays Embedded posts.
@@ -428,24 +412,22 @@ class FBPlugin extends  \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
      *
      * @return	STRING	$content	...
      */
-    function displayEmbedded(){
+    public function displayEmbedded()
+    {
         $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_EMBEDDED###');
         $content = $this->cObj->substituteMarkerArray($template, $this->marker);
         return $content;
     }
 
-
-
-/**
-     * This method assigns some default variables to the view
-     */
-    private function setDefaultViewVars() {
-
-        $this->extKey = "Tp3Social";
-    	$this->layout = $this->settings["layout"] ? $this->settings["layout"] : "style05";
-    	//$this->cObj = GeneralUtility::makeInstance(TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer);
-    	$this->pageRenderer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Page\\PageRenderer');
-    	//$this->view->assign('cObjData', $cObjData);
+    /**
+         * This method assigns some default variables to the view
+         */
+    private function setDefaultViewVars()
+    {
+        $this->extKey = 'Tp3Social';
+        $this->layout = $this->settings['layout'] ? $this->settings['layout'] : 'style05';
+        //$this->cObj = GeneralUtility::makeInstance(TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer);
+        $this->pageRenderer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Page\\PageRenderer');
+        //$this->view->assign('cObjData', $cObjData);
     }
-    
 }

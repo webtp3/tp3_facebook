@@ -1,4 +1,11 @@
 <?php
+
+/*
+ * This file is part of the web-tp3/tp3-facebook.
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 namespace Tp3\Tp3Facebook\Controller;
 
 /***
@@ -19,7 +26,7 @@ class FBPluginController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 {
     /**
      * action list
-     * 
+     *
      * @return void
      */
     public function listAction()
@@ -28,13 +35,13 @@ class FBPluginController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
         $this->conf = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
 
-        $fbPlugins = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\Tp3\Tp3Facebook\Plugin\FBPlugin::class)->main($cObj,$this->conf);
-        $this->view->assign('fbPlugins', $fbPlugins );
+        $fbPlugins = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\Tp3\Tp3Facebook\Plugin\FBPlugin::class)->main($cObj, $this->conf);
+        $this->view->assign('fbPlugins', $fbPlugins);
     }
 
     /**
      * action show
-     * 
+     *
      * @param \Tp3\Tp3Facebook\Domain\Model\FBPlugin $fbPlugin
      * @return void
      */
@@ -45,11 +52,10 @@ class FBPluginController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
     /**
      * action share
-     * 
+     *
      * @return void
      */
     public function shareAction()
     {
-
     }
 }

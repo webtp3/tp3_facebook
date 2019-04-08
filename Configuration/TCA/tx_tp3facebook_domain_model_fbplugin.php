@@ -1,4 +1,11 @@
 <?php
+
+/*
+ * This file is part of the web-tp3/tp3-facebook.
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 return [
     'ctrl' => [
         'title'	=> 'LLL:EXT:tp3_facebook/Resources/Private/Language/locallang_db.xlf:tx_tp3facebook_domain_model_fbplugin',
@@ -10,42 +17,42 @@ return [
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
-		'delete' => 'deleted',
+        'delete' => 'deleted',
         'hideAtCopy' => true,
-		'enablecolumns' => [
+        'enablecolumns' => [
             'disabled' => 'hidden',
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-		'searchFields' => '',
+        'searchFields' => '',
         'iconfile' => 'EXT:tp3_facebook/Resources/Public/Icons/user_plugin_fbplugin.svg',
         'typeicon_classes' => [
             'default' => 'ext-tp3_facebook-wizard-icon'
         ],
     ],
     'interface' => [
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, ',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, ',
     ],
     'types' => [
-		'1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, , --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
+        '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, , --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
     ],
     'columns' => [
-		'sys_language_uid' => [
-			'exclude' => true,
-			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
-			'config' => [
-				'type' => 'select',
-				'renderType' => 'selectSingle',
-				'special' => 'languages',
-				'items' => [
-					[
-						'LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages',
-						-1,
-						'flags-multiple'
-					]
-				],
-				'default' => 0,
-			],
+        'sys_language_uid' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'special' => 'languages',
+                'items' => [
+                    [
+                        'LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages',
+                        -1,
+                        'flags-multiple'
+                    ]
+                ],
+                'default' => 0,
+            ],
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
@@ -66,7 +73,7 @@ return [
                 'type' => 'passthrough',
             ],
         ],
-		'hidden' => [
+        'hidden' => [
             'exclude' => true,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
             'config' => [
@@ -78,7 +85,7 @@ return [
                 ],
             ],
         ],
-		'starttime' => [
+        'starttime' => [
             'exclude' => true,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.starttime',
             'config' => [
