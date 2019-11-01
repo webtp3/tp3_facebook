@@ -84,7 +84,7 @@ class FBPlugin extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         $this->pi_setPiVarDefaults();
         $this->pi_initPIflexForm();
         $this->ffConf = [];
-        $this->templateFile = $this->cObj->fileResource($this->conf['templateFile']);
+        $this->templateFile = @is_file($this->conf['templateFile']);
 
         // Check if static template and App ID is loaded
         if ($this->conf['staticTemplateCheck'] != 1) {

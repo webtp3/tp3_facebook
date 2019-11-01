@@ -30,7 +30,7 @@
         "web-tp3/tp3_facebook": "self.version"
     },
     "suggest": {
-        "web-tp3/tp3_facebook": "*"
+        "web-tp3/tp3social": "*"
     },
     "scripts": {
         "test:php:unit": [
