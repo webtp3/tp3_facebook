@@ -22,6 +22,10 @@ use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
+use TYPO3\CMS\Core\Service\MarkerBasedTemplateService;
+use \TYPO3\CMS\Frontend\ContentObject\FileContentObject;
+use TYPO3\CMS\Frontend\Resource\FilePathSanitizer;
 
 /**
  * FBPlugin
@@ -37,7 +41,11 @@ class FBPlugin extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
      * @var layout;
      */
     public $layout;
-
+    /**
+     *
+     * @var MarkerBasedTemplateService;
+     */
+    public $templateService;
     /**
      * action translate
      *
@@ -45,7 +53,6 @@ class FBPlugin extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
      */
     private function gettranslation($key)
     {
-        //$extensionName = "Tp3share";
         \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($key, $this->extKey);
     }
     /**
@@ -55,13 +62,13 @@ class FBPlugin extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
     public $pageRenderer = null;
     /**
      *
-     * @var \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+     *  to be removed
      */
     public $cObjRenderer = null;
 
     /**
-     *
      * content Object
+     * @var \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
      */
     public $cObj;
     /**
@@ -84,7 +91,12 @@ class FBPlugin extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         $this->pi_setPiVarDefaults();
         $this->pi_initPIflexForm();
         $this->ffConf = [];
-        $this->templateFile = @is_file($this->conf['templateFile']);
+     //   $this->templateFile = $this->cObj->fileResource($this->conf['templateFile']);//@is_file($this->conf['templateFile']) ? $this->conf['templateFile'] : '';
+        $this->conf['templateFile'] = GeneralUtility::makeInstance(FilePathSanitizer::class)->sanitize($this->conf['templateFile']);
+        if (file_exists($this->conf['templateFile'])) {
+
+            $this->templateFile = file_get_contents($this->conf['templateFile']);
+        }
 
         // Check if static template and App ID is loaded
         if ($this->conf['staticTemplateCheck'] != 1) {
@@ -98,9 +110,14 @@ class FBPlugin extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         if ($this->pageRenderer === null) {
             $this->pageRenderer = $this->objectManager->get(PageRenderer::class);
         }
-        if ($this->cObjRenderer === null) {
-            $this->cObjRenderer = $this->objectManager->get(ContentObjectRenderer::class);
+        if ($this->templateService  === null) {
+            $this->templateService  = $this->objectManager->get(MarkerBasedTemplateService::class);
         }
+        if ($this->cObj === null) {
+            $this->cObj = $this->objectManager->get(ContentObjectRenderer::class);
+            $FileContentObject  = $this->objectManager->get(FileContentObject::class);
+        }
+
         // decide if plugin is configured via Flexform or TypoScript
         if ($this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'type_form') != '') {
             $mode = 'ff';
@@ -236,10 +253,10 @@ class FBPlugin extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         } else {
             $content = '';
         }
-        $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_ACTIVITY_FEED' . $this->templatePrefix . '###');
+        $template = $this->templateService->getSubpart($this->templateFile, '###DISPLAY_ACTIVITY_FEED' . $this->templatePrefix . '###');
         $this->marker['###A_SHOW_HEADER###'] = ($this->marker['###A_SHOW_HEADER###'] == 1 ? 'true' : 'false');
         $this->marker['###A_SHOW_RECOMMENDATIONS###'] = ($this->marker['###A_SHOW_RECOMMENDATIONS###'] == 1 ? 'true' : 'false');
-        $content .= $this->cObj->substituteMarkerArray($template, $this->marker);
+        $content .= $this->templateService->substituteMarkerArray($template, $this->marker);
         return $content;
     }
 
@@ -251,10 +268,10 @@ class FBPlugin extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
      */
     public function displayComments()
     {
-        $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_COMMENTS###');
+        $template = $this->templateService->getSubpart($this->templateFile, '###DISPLAY_COMMENTS###');
         $this->marker['###B_PUBLISH_FEED###'] = ($this->marker['###B_PUBLISH_FEED###'] == 1 ? 'true' : 'false');
         $this->marker['###B_URL###'] = \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL');
-        $content = $this->cObj->substituteMarkerArray($template, $this->marker);
+        $content = $this->templateService->substituteMarkerArray($template, $this->marker);
         return $content;
     }
 
@@ -271,8 +288,8 @@ class FBPlugin extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         } else {
             $content = '';
         }
-        $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_FACEPILE###');
-        $content = $this->cObj->substituteMarkerArray($template, $this->marker);
+        $template = $this->templateService->getSubpart($this->templateFile, '###DISPLAY_FACEPILE###');
+        $content = $this->templateService->substituteMarkerArray($template, $this->marker);
         return $content;
     }
 
@@ -290,7 +307,7 @@ class FBPlugin extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
             $content = '';
         }
 
-        $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_LIKE_BUTTON' . $this->templatePrefix . '###');
+        $template = $this->templateService->getSubpart($this->templateFile, '###DISPLAY_LIKE_BUTTON' . $this->templatePrefix . '###');
         if (!$this->marker['###D_URL###'] || (!empty($_GET['tx_ttnews']['tt_news']) && $this->ffConf['d_tt_news'] == 1)) {
             $params = [];
             foreach ($_GET as $param => $value) {
@@ -302,7 +319,7 @@ class FBPlugin extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         }
         $this->marker['###D_SHOW_FACES###'] = ($this->marker['###D_SHOW_FACES###'] == 1 ? 'true' : 'false');
         $this->marker['###D_SHARE###'] = ($this->marker['###D_SHARE###'] == 1 ? 'true' : 'false');
-        $content .= $this->cObj->substituteMarkerArray($template, $this->marker);
+        $content .= $this->templateService->substituteMarkerArray($template, $this->marker);
         return $content;
     }
 
@@ -319,7 +336,7 @@ class FBPlugin extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         } else {
             $content = '';
         }
-        $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_LIKE_BOX' . $this->templatePrefix . '###');
+        $template = $this->templateService->getSubpart($this->templateFile, '###DISPLAY_LIKE_BOX' . $this->templatePrefix . '###');
         //fall back for old api entries
         if ($this->marker['###E_SHOW_STREAM###'] == 1) {
             $this->marker['###E_SHOW_STREAM###'] = 'timeline';
@@ -328,7 +345,7 @@ class FBPlugin extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         $this->marker['###E_SHOW_HEADER###'] = ($this->marker['###E_SHOW_HEADER###'] == 1 ? 'true' : 'false');
         $this->marker['###E_SHOW_FACES###'] = ($this->marker['###E_SHOW_FACES###'] == 1 ? 'true' : 'false');
         $this->marker['###E_SHOW_BORDER###'] = ($this->marker['###E_SHOW_BORDER###'] == 1 ? 'true' : 'false');
-        $content .= $this->cObj->substituteMarkerArray($template, $this->marker);
+        $content .= $this->templateService->substituteMarkerArray($template, $this->marker);
         return $content;
     }
 
@@ -345,9 +362,9 @@ class FBPlugin extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         } else {
             $content = '';
         }
-        $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_RECOMMENDATIONS' . $this->templatePrefix . '###');
+        $template = $this->templateService->getSubpart($this->templateFile, '###DISPLAY_RECOMMENDATIONS' . $this->templatePrefix . '###');
         $this->marker['###H_SHOW_HEADER###'] = ($this->marker['###H_SHOW_HEADER###'] == 1 ? 'true' : 'false');
-        $content .= $this->cObj->substituteMarkerArray($template, $this->marker);
+        $content .= $this->templateService->substituteMarkerArray($template, $this->marker);
         return $content;
     }
 
@@ -359,7 +376,7 @@ class FBPlugin extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
      */
     public function displaySendButton()
     {
-        $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_SEND_BUTTON###');
+        $template = $this->templateService->getSubpart($this->templateFile, '###DISPLAY_SEND_BUTTON###');
         if (!$this->marker['###I_URL##']) {
             $params = [];
             foreach ($_GET as $param => $value) {
@@ -369,7 +386,7 @@ class FBPlugin extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
             }
             $this->marker['###I_URL###'] = \TYPO3\CMS\Core\Utility\GeneralUtility::locationHeaderUrl($this->pi_getPageLink($GLOBALS['TSFE']->id, '', $params));
         }
-        $content = $this->cObj->substituteMarkerArray($template, $this->marker);
+        $content = $this->templateService->substituteMarkerArray($template, $this->marker);
         return $content;
     }
 
@@ -386,9 +403,9 @@ class FBPlugin extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         } else {
             $content = '';
         }
-        $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_SUBSCRIBE_BUTTON###');
+        $template = $this->templateService->getSubpart($this->templateFile, '###DISPLAY_SUBSCRIBE_BUTTON###');
         $this->marker['###J_SHOW_FACES###'] = ($this->marker['###J_SHOW_FACES###'] == 1 ? 'true' : 'false');
-        $content = $this->cObj->substituteMarkerArray($template, $this->marker);
+        $content = $this->templateService->substituteMarkerArray($template, $this->marker);
         return $content;
     }
 
@@ -400,9 +417,9 @@ class FBPlugin extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
      */
     public function displayShareButton()
     {
-        $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_SHARE_BUTTON###');
+        $template = $this->templateService->getSubpart($this->templateFile, '###DISPLAY_SHARE_BUTTON###');
         $this->marker['###K_WIDTH###'] = (is_int($this->marker['###K_WIDTH###']) ? 'small' :  $this->marker['###K_WIDTH###']);
-        $content = $this->cObj->substituteMarkerArray($template, $this->marker);
+        $content = $this->templateService->substituteMarkerArray($template, $this->marker);
         return $content;
     }
 
@@ -414,20 +431,21 @@ class FBPlugin extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
      */
     public function displayEmbedded()
     {
-        $template = $this->cObj->getSubpart($this->templateFile, '###DISPLAY_EMBEDDED###');
-        $content = $this->cObj->substituteMarkerArray($template, $this->marker);
+        $template = $this->templateService->getSubpart($this->templateFile, '###DISPLAY_EMBEDDED###');
+        $content = $this->templateService->substituteMarkerArray($template, $this->marker);
         return $content;
     }
 
+
+
     /**
-         * This method assigns some default variables to the view
-         */
-    private function setDefaultViewVars()
+     * Get TypoScriptFrontendController
+     *
+     * @return TypoScriptFrontendController
+     */
+    protected function getTypoScriptFrontendController()
     {
-        $this->extKey = 'Tp3Social';
-        $this->layout = $this->settings['layout'] ? $this->settings['layout'] : 'style05';
-        //$this->cObj = GeneralUtility::makeInstance(TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer);
-        $this->pageRenderer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Page\\PageRenderer');
-        //$this->view->assign('cObjData', $cObjData);
+        return $GLOBALS['TSFE'];
     }
+
 }
