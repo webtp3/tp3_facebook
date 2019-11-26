@@ -25,12 +25,12 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\CMS\Core\Service\MarkerBasedTemplateService;
-use \TYPO3\CMS\Frontend\ContentObject\FileContentObject;
+use TYPO3\CMS\Frontend\ContentObject\FileContentObject;
 use TYPO3\CMS\Frontend\Resource\FilePathSanitizer;
 
 /**
  * FBPlugin
-  */
+ */
 class FBPlugin extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
 {
     public $prefixId      = 'tx_tp3facebook_fbplugin';		// Same as class name
@@ -92,8 +92,11 @@ class FBPlugin extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         $this->pi_setPiVarDefaults();
         $this->pi_initPIflexForm();
         $this->ffConf = [];
-     //   $this->templateFile = $this->cObj->fileResource($this->conf['templateFile']);//@is_file($this->conf['templateFile']) ? $this->conf['templateFile'] : '';
-        $this->conf['templateFile'] = GeneralUtility::makeInstance(FilePathSanitizer::class)->sanitize($this->conf['templateFile']);
+        /*
+         * if is 9 FilePathSanitizer exists
+         */
+        if(class_exists(TYPO3\CMS\Frontend\Resource\FilePathSanitizer::class)) $this->conf['templateFile'] = GeneralUtility::makeInstance(FilePathSanitizer::class)->sanitize($this->conf['templateFile']);
+        else$this->templateFile = $this->cObj->fileResource($this->conf['templateFile']);//@is_file($this->conf['templateFile']) ? $this->conf['templateFile'] : '';
         if (file_exists($this->conf['templateFile'])) {
 
             $this->templateFile = file_get_contents($this->conf['templateFile']);
