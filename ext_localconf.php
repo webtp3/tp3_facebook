@@ -55,5 +55,8 @@ defined('TYPO3_MODE') || die('Access denied.');
             );
         }
     }
+if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) < 10004000) {
+
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update'][\Tp3\Tp3Facebook\Updates\Tp3FacebookpluginUpdate::class]
         = \Tp3\Tp3Facebook\Updates\Tp3FacebookpluginUpdate::class;
+}

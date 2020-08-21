@@ -95,15 +95,14 @@ class FBPlugin extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         /*
          * if is 9 FilePathSanitizer exists
          */
-        if(class_exists(TYPO3\CMS\Frontend\Resource\FilePathSanitizer::class)) $this->conf['templateFile'] = GeneralUtility::makeInstance(FilePathSanitizer::class)->sanitize($this->conf['templateFile']);
-        else {
-            $this->templateFile = $this->cObj->fileResource($this->conf['templateFile']);
-            //@is_file($this->conf['templateFile']) ? $this->conf['templateFile'] : '';
-            if (file_exists($this->conf['templateFile'])) {
-
-                $this->templateFile = file_get_contents($this->conf['templateFile']);
-            }
+        if(file_exists(Environment::getPublicPath() .$this->conf['templateFile'])){
+            $this->templateFile = file_get_contents(Environment::getPublicPath() .$this->conf['templateFile']);
+        } else{
+            return '<b>Please include the templateFile!</b>';
         }
+
+
+
 
         // Check if static template and App ID is loaded
         if ($this->conf['staticTemplateCheck'] != 1) {
