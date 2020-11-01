@@ -16,6 +16,7 @@
 							<onChange>reload</onChange>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<eval>required</eval>
 								<size>1</size>
 								<maxitems>1</maxitems>
@@ -152,6 +153,7 @@
 							<displayCond>FIELD:type_form:=:activity_feed</displayCond>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<eval>required</eval>
 								<size>1</size>
 								<maxitems>1</maxitems>
@@ -179,6 +181,7 @@
 							<displayCond>FIELD:type_form:=:activity_feed</displayCond>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<eval>required</eval>
 								<size>1</size>
 								<maxitems>1</maxitems>
@@ -302,6 +305,7 @@
 							<displayCond>FIELD:type_form:=:comments</displayCond>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<eval>required</eval>
 								<size>1</size>
 								<maxitems>1</maxitems>

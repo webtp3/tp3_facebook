@@ -27,6 +27,7 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\CMS\Core\Service\MarkerBasedTemplateService;
 use TYPO3\CMS\Frontend\ContentObject\FileContentObject;
 use TYPO3\CMS\Frontend\Resource\FilePathSanitizer;
+use TYPO3\CMS\Core\Core\Environment;
 
 /**
  * FBPlugin
@@ -92,11 +93,13 @@ class FBPlugin extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
         $this->pi_setPiVarDefaults();
         $this->pi_initPIflexForm();
         $this->ffConf = [];
+//        var_dump(Environment::getPublicPath() .str_replace('EXT:','/typo3conf/ext/',$this->conf['templateFile']));
+//        exit;
         /*
          * if is 9 FilePathSanitizer exists
          */
-        if(file_exists(Environment::getPublicPath() .$this->conf['templateFile'])){
-            $this->templateFile = file_get_contents(Environment::getPublicPath() .$this->conf['templateFile']);
+        if(file_exists(Environment::getPublicPath() .str_replace('EXT:','/typo3conf/ext/',$this->conf['templateFile']))){
+            $this->templateFile = file_get_contents(Environment::getPublicPath() .str_replace('EXT:','/typo3conf/ext/',$this->conf['templateFile']));
         } else{
             return '<b>Please include the templateFile!</b>';
         }
