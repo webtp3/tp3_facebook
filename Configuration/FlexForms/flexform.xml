@@ -865,6 +865,7 @@
 							<displayCond>FIELD:type_form:=:like_box</displayCond>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<eval>required</eval>
 								<size>1</size>
 								<maxitems>1</maxitems>
@@ -903,6 +904,7 @@
 							<displayCond>FIELD:type_form:=:like_box</displayCond>
 							<config TYPE="array">
 								<type>select</type>
+								<renderType>selectSingleBox</renderType>
 								<size>3</size>
 								<maxitems>3</maxitems>
 								<mintems>1</mintems>
